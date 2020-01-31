@@ -81,6 +81,17 @@ services:
     networks:
       - rd_magento2
 
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./.docker/mogo_data:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null
+
 
 networks:
   rd_magento2:
