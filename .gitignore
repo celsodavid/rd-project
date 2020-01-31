@@ -1,2 +1,4 @@
 .docker/percona_data
 !.docker/percona_data/.keep
+.docker/es_data
+!.docker/es_data/.keep
