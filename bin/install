@@ -18,6 +18,8 @@ docker-compose exec php bash -c "chmod u+x bin/magento";
 
 bin/mysql restore
 
+bin/setup
+
 # docker-compose exec mysql bash -c "mysql -uroot -p123123 < /dump/create_schema.sql"
 
 # docker-compose exec php bash -c "bin/magento setup:install --base-url=https://drogasil.local \
