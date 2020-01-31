@@ -30,7 +30,7 @@ services:
   mysql:
     image: percona
     volumes:
-      - /opt/percona_data:/var/lib/mysql
+      - ./.docker/percona_data:/var/lib/mysql
       - ./dump_rd:/dump
       - ./.docker/config/mysql/magento2.cnf:/etc/mysql/conf.d/magento2.cnf
     environment:
