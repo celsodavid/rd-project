@@ -12,7 +12,7 @@
 
 Para construir todo o ambiente é necessário somente um passo:
 
-1. Agora execute o seguite comando e aguarde a instalação:
+1. 
 
     ```sh
         sudo bin/install
