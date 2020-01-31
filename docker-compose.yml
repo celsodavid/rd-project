@@ -72,6 +72,15 @@ services:
     networks:
       - rd_magento2
 
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.6
+    ports: 
+      - "9200:9200"
+    volumes:
+      - "./.docker/es_data:/usr/share/elasticsearch/data"
+    networks:
+      - rd_magento2
+
 
 networks:
   rd_magento2:
