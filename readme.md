@@ -7,12 +7,12 @@
 - RabbitMQ
 - Redis
 - Elastic Cache
+- Mongo DB
 
 ### Getting Started
 
 Para construir todo o ambiente é necessário somente um passo:
 
-1. 
 ```sh   
 sudo bin/install
 ```
