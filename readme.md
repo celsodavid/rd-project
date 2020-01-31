@@ -13,10 +13,10 @@
 Para construir todo o ambiente é necessário somente um passo:
 
 1. 
-
-    ```sh
-        sudo bin/install
-    ```
+```sh   
+sudo bin/install
+```
+    
 Ao final da execução, reinicie o seu navegador.
    
 #### Utilities
