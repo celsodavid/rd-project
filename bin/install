@@ -4,6 +4,9 @@ export UID=${UID}
 export GID=${GID}
 
 docker-compose stop; docker-compose build; docker-compose up -d; docker-compose ps;
+sudo chmod 777 -R .docker/percona_data;
+sudo chmod 777 -R .docker/es_data;
+sudo chmod 777 -R .docker/mongo_data;
 
 echo -e "\n"
 
