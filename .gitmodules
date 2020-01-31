@@ -1,0 +1,3 @@
+[submodule "src"]
+	path = src
+	url = gitlab@10.1.1.230:ecommerce/ecommerce-core/magento.git

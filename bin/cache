@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export UID=${UID}
+export GID=${GID}
+
+docker-compose exec php bash -c "bin/magento c:c; bin/magento c:f;"
+bin/redis clean

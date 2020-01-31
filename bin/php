@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ARG=$1
+
+export UID=${UID}
+export GID=${GID}
+
+if ! test $ARG; then
+   docker-compose exec php sh
+   exit
+fi
+
+docker-compose exec php php $1

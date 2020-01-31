@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export UID=${UID}
+export GID=${GID}
+
+cp ./.docker/config/magento/env.php src/app/etc/
+cp ./.docker/config/magento/config.php src/app/etc/
+
+docker-compose exec php bash -c "bin/magento deploy:mode:set developer; bin/magento config:set dev/static/sign 0; bin/magento c:c;";
+docker-compose exec php bash -c "bin/magento setup:upgrade;";
+docker-compose exec php bash -c "bin/magento setup:di:compile;";
+docker-compose exec php bash -c "bin/magento s:s:d -f;";

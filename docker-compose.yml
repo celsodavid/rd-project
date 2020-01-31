@@ -1,0 +1,78 @@
+version: "2.2"
+
+services:
+
+  nginx:
+    build: ./.docker/build/nginx
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src:/var/www/html
+      - ./.docker/config/nginx/ssl/drogaraia/drogaraia.local.crt:/etc/nginx/drogaraia.local.crt
+      - ./.docker/config/nginx/ssl/drogaraia/drogaraia.local.key:/etc/nginx/drogaraia.local.key
+      - ./.docker/config/nginx/ssl/drogasil/drogasil.local.crt:/etc/nginx/drogasil.local.crt
+      - ./.docker/config/nginx/ssl/drogasil/drogasil.local.key:/etc/nginx/drogasil.local.key
+      - ./.docker/config/nginx/ssl/onofre/onofre.local.crt:/etc/nginx/onofre.local.crt
+      - ./.docker/config/nginx/ssl/onofre/onofre.local.key:/etc/nginx/onofre.local.key
+      - ./.docker/config/nginx/magento.conf:/etc/nginx/conf.d/magento.conf
+      - ./.docker/config/nginx/drogaraia.conf:/etc/nginx/conf.d/drogaraia.conf
+      - ./.docker/config/nginx/onofre.conf:/etc/nginx/conf.d/onofre.conf
+      - ./.docker/config/nginx/drogasil.conf:/etc/nginx/conf.d/drogasil.conf      
+    networks:
+      rd_magento2:
+        aliases:
+          - drogasil.local
+          - drogaraia.local
+          - onofre.local
+
+  mysql:
+    image: percona
+    volumes:
+      - /opt/mysql_data:/var/lib/mysql
+      - ./dump_rd:/dump
+      - ./.docker/config/mysql/magento2.cnf:/etc/mysql/conf.d/magento2.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: 123123
+      MYSQL_USER: usr_drogasil
+      MYSQL_PASSWORD: 123123
+      MYSQL_DATABASE: mage2
+    ports:
+      - "3306:3306"
+    networks:
+      - rd_magento2
+
+  rabbitmq:
+    image: rabbitmq:3.6-management
+    volumes:
+      - ./.docker/config/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+    ports:
+      - "15672:15672"
+    networks:
+      - rd_magento2
+
+  redis:
+    image: redis
+    ports:
+      - "6379"
+    networks:
+      - rd_magento2
+        
+  php:
+    build: ./.docker/build/php
+    environment:
+      COMPOSER_HOME: /usr/local/.composer
+    volumes:
+      - ./src:/var/www/html
+      - ./.docker/config/php/php.ini:/usr/local/etc/php/conf.d/raiadrogasil.ini
+      - ./.docker/config/php/www.conf:/usr/local/etc/php-fpm.d/raiadrogasil.conf
+      - ./.docker/config/php/auth.json:/usr/local/.composer/auth.json
+    user: "${UID}:${GID}"
+    networks:
+      - rd_magento2
+
+
+networks:
+  rd_magento2:
+    driver: bridge

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+pkgs='libnss3-tools'
+
+if ! dpkg -s $pkgs >/dev/null 2>&1; then
+  sudo apt-get install $pkgs
+fi
+
+PWD=$(pwd)
+SSL_PATH=$PWD/.docker/config/nginx/ssl;
+
+echo -e "\nHabilitando certificado <drogaraia>\n";
+cd $SSL_PATH/drogaraia/
+sudo certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n "drogaraia.local" -i drogaraia.local.crt
+
+echo -e "Habilitando certificado <drogasil>\n";
+cd $SSL_PATH/drogasil/
+sudo certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n "drogasil.local" -i drogasil.local.crt
+
+echo -e "Habilitando certificado <onofre>\n";
+cd $SSL_PATH/onofre/
+sudo certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n "onofre.local" -i onofre.local.crt
+
+echo -e "Habilitando Autoridade Certificadora\n";
+cd $SSL_PATH/autoridade/
+sudo certutil -d sql:$HOME/.pki/nssdb -A -n 'RaiaDrograsil CA' -i RootCA.crt -t TCP,TCP,TCP
+
+
+rm -rf $SSL_PATH/certificate.pem
+touch $SSL_PATH/certificate.pem
+cat $SSL_PATH/drogaraia/drogaraia.local.crt $SSL_PATH/drogaraia/drogaraia.local.csr \
+$SSL_PATH/drogaraia/drogaraia.local.key $SSL_PATH/drogasil/drogasil.local.crt $SSL_PATH/drogasil/drogasil.local.csr \
+$SSL_PATH/drogasil/drogasil.local.key $SSL_PATH/onofre/onofre.local.crt $SSL_PATH/onofre/onofre.local.csr \
+$SSL_PATH/onofre/onofre.local.key $SSL_PATH/autoridade/RootCA.crt $SSL_PATH/autoridade/RootCA.key > $SSL_PATH/certificate.pem

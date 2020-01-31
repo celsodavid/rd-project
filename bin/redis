@@ -1,0 +1,23 @@
+#!/bin/bash
+
+ARG=$1
+
+export UID=${UID}
+export GID=${GID}
+
+if ! test $ARG; then
+   docker-compose exec redis redis-cli
+   exit
+fi
+
+if [ $ARG = "clean" ]; then
+    docker-compose exec redis redis-cli flushall
+    exit;
+fi
+
+if [ $ARG = "monitor" ]; then
+    docker-compose exec redis redis-cli monitor
+    exit;
+fi
+
+echo "command not found";

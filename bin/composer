@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export UID=${UID}
+export GID=${GID}
+
+docker-compose exec php bash -c "composer install"

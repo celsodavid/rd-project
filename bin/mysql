@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ARG=$1
+
+export UID=${UID}
+export GID=${GID}
+
+if ! test $ARG; then
+   docker-compose exec mysql mysql -uroot -p123123
+   exit
+fi
+
+if [ $ARG = "bash" ]; then
+    docker-compose exec mysql bash
+    exit;
+fi
+
+if [ $ARG = "restore" ]; then
+    docker-compose exec mysql bash -c "mysql -uroot -p123123 < /dump/magento2.sql"
+    exit;
+fi
