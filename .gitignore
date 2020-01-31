@@ -2,3 +2,5 @@
 !.docker/percona_data/.keep
 .docker/es_data
 !.docker/es_data/.keep
+.docker/mongo_data
+!.docker/mongo_data/.keep
