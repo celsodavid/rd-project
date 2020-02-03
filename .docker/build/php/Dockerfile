@@ -9,7 +9,7 @@ RUN apk add jpeg-dev libpng-dev freetype-dev libxslt-dev icu-dev libzip-dev
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 && docker-php-ext-install gd bcmath xsl intl pdo pdo_mysql soap zip
 
-#RUN apk add nginx supervisor git openssh
+RUN apk add supervisor
 
 # COMPOSER
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
