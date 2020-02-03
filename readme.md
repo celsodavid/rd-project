@@ -18,6 +18,15 @@ sudo bin/install
 ```
     
 Ao final da execução, reinicie o seu navegador.
+
+### URLs
+
+É necessário adicionar no seu arquivo hosts e no proxy as urls para cada site. São elas:
+```
+drogasil.local
+drogaraia.local
+onofre.local
+```
    
 #### Utilities
 
