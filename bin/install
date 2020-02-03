@@ -3,40 +3,33 @@
 export UID=${UID}
 export GID=${GID}
 
+echo -e "\nConfigurando permissão de diretórios\n";
 sudo chmod 777 -R .docker/percona_data;
 sudo chmod 777 -R .docker/es_data;
 sudo chmod 777 -R .docker/mongo_data;
 
-docker-compose stop; docker-compose build; docker-compose up -d; docker-compose ps;
+echo -e "\nParando serviços docker\n";
+docker-compose stop;
+echo -e "\nBuild do docker\n";
+docker-compose build;
+echo -e "\nIniciando serviços docker\n";
+docker-compose up -d; docker-compose ps;
 
 echo -e "\n"
-
 bin/ssl
 
+echo -e "\nInstala Prestissimo para o composer\n";
 docker-compose exec php bash -c "composer global require hirak/prestissimo";
+echo -e "\nInicializando submódulos\n";
 git submodule init; git submodule update;
+echo -e "\nInstalação dos módulos Composer\n";
 docker-compose exec php bash -c "composer install";
+echo -e "\nPermissão de diretórios Magento 2\n";
 docker-compose exec php bash -c "find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +";
 docker-compose exec php bash -c "find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +";
 docker-compose exec php bash -c "chmod u+x bin/magento";
 
+echo -e "\nRestore do banco de dados\n";
 bin/mysql restore
 
 bin/setup
-
-# docker-compose exec mysql bash -c "mysql -uroot -p123123 < /dump/create_schema.sql"
-
-# docker-compose exec php bash -c "bin/magento setup:install --base-url=https://drogasil.local \
-# --db-host=mysql --db-name=magento2 \
-# --db-user=root --db-password=123123 \
-# --admin-firstname=Magento --admin-lastname=Admin --admin-email=local@admin.com \
-# --admin-user=admin --admin-password=admin123 --language=en_US \
-# --currency=USD --timezone=America/Sao_Paulo --cleanup-database \
-# --use-rewrites=1 --use-secure=1 --base-url-secure=https://drogasil.local \
-# --use-secure-admin=1 --backend-frontname=admin";
-
-# docker-compose exec php bash -c "bin/magento setup:db-schema:split-quote --host='mysql' --dbname='magento2_quote' \
-# --username='root' --password='123123'";
-
-# docker-compose exec php bash -c "bin/magento setup:db-schema:split-sales --host='mysql' --dbname='magento2_sales' \
-# --username='root' --password='123123'";
