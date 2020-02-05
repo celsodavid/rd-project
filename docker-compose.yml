@@ -61,6 +61,8 @@ services:
         
   php:
     build: ./.docker/build/php
+    environment:
+      COMPOSER_HOME: /usr/local/.composer
     volumes:
       - ./src:/var/www/html
       - ./.docker/config/php/php.ini:/usr/local/etc/php/conf.d/raiadrogasil.ini
