@@ -27,6 +27,13 @@ drogasil.local
 drogaraia.local
 onofre.local
 ```
+
+### Admin
+O endereço para o admin é `/admin`
+```
+Usuário: admin
+Senha: admin123 
+```
    
 #### Utilities
 
