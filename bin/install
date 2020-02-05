@@ -21,7 +21,7 @@ bin/ssl
 echo -e "\nInicializando submódulos\n";
 git submodule init; git submodule update;
 echo -e "\nInstalação dos módulos Composer\n";
-docker-compose exec php bash -c "composer install";
+docker-compose exec php bash -c "chmod 777 -R /usr/local/.composer && composer install";
 echo -e "\nPermissão de diretórios Magento 2\n";
 docker-compose exec php bash -c "find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +";
 docker-compose exec php bash -c "find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +";

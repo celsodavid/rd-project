@@ -10,8 +10,8 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 # COMPOSER
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    mkdir /usr/local/.composer && chmod 777 -R /usr/local/.composer && \
-    export COMPOSER_HOME='/usr/local/.composer' && composer global require hirak/prestissimo
+    mkdir /usr/local/.composer && export COMPOSER_HOME='/usr/local/.composer' && \
+    composer global require hirak/prestissimo  && chmod 777 -R /usr/local/.composer
 
 # Set default locale for the environment
 ENV LC_ALL C.UTF-8
