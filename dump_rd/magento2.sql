@@ -18,7 +18,7 @@
 --
 -- Table structure for table `admin_analytics_usage_version_log`
 --
-DROP DATABASE IF EXISTS magento2;
+DROP DATABASE magento2;
 CREATE SCHEMA `magento2` DEFAULT CHARACTER SET utf8 ;
 USE magento2;
 
@@ -4968,7 +4968,7 @@ CREATE TABLE `customer_entity` (
   KEY `CUSTOMER_ENTITY_GROUP_ID` (`group_id`),
   CONSTRAINT `CUSTOMER_ENTITY_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL,
   CONSTRAINT `CUSTOMER_ENTITY_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Customer Entity';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Customer Entity';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4977,6 +4977,7 @@ CREATE TABLE `customer_entity` (
 
 LOCK TABLES `customer_entity` WRITE;
 /*!40000 ALTER TABLE `customer_entity` DISABLE KEYS */;
+INSERT INTO `customer_entity` VALUES (1,1,'cliente@rd.com.br',1,NULL,1,'2020-02-05 14:55:06','2020-02-05 14:55:06',1,0,'Drogasil Store View',NULL,'Cliente',NULL,'Novo',NULL,NULL,'018e081eda11d7fd65985cc6089f79713ac229fe76547a7546834ac8b4196120:XZZIutSMgNHueKKy:2','39rt3g67lvrqnR1jVq0ygpx6nFmSA4Ns','2020-02-05 14:55:06',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL);
 /*!40000 ALTER TABLE `customer_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5058,7 +5059,7 @@ CREATE TABLE `customer_entity_int` (
   KEY `CUSTOMER_ENTITY_INT_ENTITY_ID_ATTRIBUTE_ID_VALUE` (`entity_id`,`attribute_id`,`value`),
   CONSTRAINT `CUSTOMER_ENTITY_INT_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CUSTOMER_ENTITY_INT_ENTITY_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Customer Entity Int';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Customer Entity Int';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5067,6 +5068,7 @@ CREATE TABLE `customer_entity_int` (
 
 LOCK TABLES `customer_entity_int` WRITE;
 /*!40000 ALTER TABLE `customer_entity_int` DISABLE KEYS */;
+INSERT INTO `customer_entity_int` VALUES (1,158,1,1),(2,159,1,1);
 /*!40000 ALTER TABLE `customer_entity_int` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5206,6 +5208,7 @@ CREATE TABLE `customer_grid_flat` (
 
 LOCK TABLES `customer_grid_flat` WRITE;
 /*!40000 ALTER TABLE `customer_grid_flat` DISABLE KEYS */;
+INSERT INTO `customer_grid_flat` VALUES (1,'Cliente Novo','cliente@rd.com.br',1,'2020-02-05 14:55:06',1,NULL,'Drogasil Store View',NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `customer_grid_flat` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5248,7 +5251,7 @@ CREATE TABLE `customer_log` (
   `last_logout_at` timestamp NULL DEFAULT NULL COMMENT 'Last Logout Time',
   PRIMARY KEY (`log_id`),
   UNIQUE KEY `CUSTOMER_LOG_CUSTOMER_ID` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Customer Log Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Customer Log Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5257,6 +5260,7 @@ CREATE TABLE `customer_log` (
 
 LOCK TABLES `customer_log` WRITE;
 /*!40000 ALTER TABLE `customer_log` DISABLE KEYS */;
+INSERT INTO `customer_log` VALUES (1,1,'2020-02-05 14:55:52',NULL);
 /*!40000 ALTER TABLE `customer_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5275,7 +5279,7 @@ CREATE TABLE `customer_visitor` (
   PRIMARY KEY (`visitor_id`),
   KEY `CUSTOMER_VISITOR_CUSTOMER_ID` (`customer_id`),
   KEY `CUSTOMER_VISITOR_LAST_VISIT_AT` (`last_visit_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Visitor Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Visitor Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5284,6 +5288,7 @@ CREATE TABLE `customer_visitor` (
 
 LOCK TABLES `customer_visitor` WRITE;
 /*!40000 ALTER TABLE `customer_visitor` DISABLE KEYS */;
+INSERT INTO `customer_visitor` VALUES (1,1,'9c09ea309ace68fa0c0cfa99efa0c5c9','2020-02-05 14:55:08');
 /*!40000 ALTER TABLE `customer_visitor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7023,7 +7028,7 @@ CREATE TABLE `indexer_state` (
 
 LOCK TABLES `indexer_state` WRITE;
 /*!40000 ALTER TABLE `indexer_state` DISABLE KEYS */;
-INSERT INTO `indexer_state` VALUES (1,'design_config_grid','valid','2020-01-31 18:43:15','fd8a471e6ca47c9d305a1790313e8633'),(2,'customer_grid','valid','2020-01-31 18:43:16','c5eea04310cf07f7d6740c7ae9261b7c'),(3,'catalog_category_product','invalid','2020-01-31 15:05:57','ec04dd1e79ebbaa65e3af9d08d881675'),(4,'catalog_product_category','invalid','2020-01-31 15:05:57','b37bca69a7e863befd3a28890f48cc18'),(5,'catalogrule_rule','invalid','2020-01-31 15:05:57','4e81a554e72678a0bfa843d5290d038e'),(6,'catalog_product_attribute','invalid','2020-01-31 15:05:57','9a070f38db28ec01c761b99a53ed64bf'),(7,'cataloginventory_stock','invalid','2020-01-31 15:05:57','947d88a4e1ec2f0d987c412a61e5f53c'),(8,'inventory','invalid','2020-01-31 15:05:57','d3775814155ec94fd8633b8a5c12917f'),(9,'catalogrule_product','invalid','2020-01-31 15:05:57','0a175771227885d4f9c92b581d2b6aa1'),(10,'targetrule_product_rule','invalid','2020-01-31 15:05:57','c4929c7e007f30c146a9b1ee6ab966e6'),(11,'targetrule_rule_product','invalid','2020-01-31 15:05:57','7c153839c10d0dd9a23a301ce4730c85'),(12,'catalog_product_price','invalid','2020-01-31 15:05:57','fc6144f347c7ae37df6191cfb4aec71c'),(13,'catalogsearch_fulltext','invalid','2020-01-31 15:05:57','2547bcba6c11eb42e1a277fd1e74d588'),(14,'salesrule_rule','invalid','2020-01-31 15:05:57','3444af22623243848f6dc96d74054ef1'),(15,'scconnector_google_remove','invalid','2020-01-31 15:05:57','1ca86cb28365c043a03aa4d5ea16eead'),(16,'scconnector_google_feed','invalid','2020-01-31 15:05:57','5f8f8e837c5f4e8b6b3ca87bf4125286');
+INSERT INTO `indexer_state` VALUES (1,'design_config_grid','valid','2020-02-05 14:40:03','fd8a471e6ca47c9d305a1790313e8633'),(2,'customer_grid','valid','2020-02-05 14:40:03','c5eea04310cf07f7d6740c7ae9261b7c'),(3,'catalog_category_product','invalid','2020-01-31 15:05:57','ec04dd1e79ebbaa65e3af9d08d881675'),(4,'catalog_product_category','invalid','2020-01-31 15:05:57','b37bca69a7e863befd3a28890f48cc18'),(5,'catalogrule_rule','invalid','2020-01-31 15:05:57','4e81a554e72678a0bfa843d5290d038e'),(6,'catalog_product_attribute','invalid','2020-01-31 15:05:57','9a070f38db28ec01c761b99a53ed64bf'),(7,'cataloginventory_stock','invalid','2020-01-31 15:05:57','947d88a4e1ec2f0d987c412a61e5f53c'),(8,'inventory','invalid','2020-01-31 15:05:57','d3775814155ec94fd8633b8a5c12917f'),(9,'catalogrule_product','invalid','2020-01-31 15:05:57','0a175771227885d4f9c92b581d2b6aa1'),(10,'targetrule_product_rule','invalid','2020-01-31 15:05:57','c4929c7e007f30c146a9b1ee6ab966e6'),(11,'targetrule_rule_product','invalid','2020-01-31 15:05:57','7c153839c10d0dd9a23a301ce4730c85'),(12,'catalog_product_price','invalid','2020-01-31 15:05:57','fc6144f347c7ae37df6191cfb4aec71c'),(13,'catalogsearch_fulltext','invalid','2020-01-31 15:05:57','2547bcba6c11eb42e1a277fd1e74d588'),(14,'salesrule_rule','invalid','2020-01-31 15:05:57','3444af22623243848f6dc96d74054ef1'),(15,'scconnector_google_remove','invalid','2020-01-31 15:05:57','1ca86cb28365c043a03aa4d5ea16eead'),(16,'scconnector_google_feed','invalid','2020-01-31 15:05:57','5f8f8e837c5f4e8b6b3ca87bf4125286');
 /*!40000 ALTER TABLE `indexer_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7354,65 +7359,6 @@ LOCK TABLES `inventory_stock_sales_channel` WRITE;
 /*!40000 ALTER TABLE `inventory_stock_sales_channel` DISABLE KEYS */;
 INSERT INTO `inventory_stock_sales_channel` VALUES ('website','drogaraia',1),('website','drogasil',1),('website','onofre',1);
 /*!40000 ALTER TABLE `inventory_stock_sales_channel` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `klarna_core_order`
---
-
-DROP TABLE IF EXISTS `klarna_core_order`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `klarna_core_order` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Entity Id',
-  `klarna_order_id` varchar(255) DEFAULT NULL COMMENT 'Klarna Order Id',
-  `session_id` varchar(255) DEFAULT NULL COMMENT 'Session Id',
-  `reservation_id` varchar(255) DEFAULT NULL COMMENT 'Reservation Id',
-  `order_id` int(10) unsigned NOT NULL COMMENT 'Order Id',
-  `is_acknowledged` smallint(6) NOT NULL DEFAULT '0' COMMENT 'Is Acknowledged',
-  PRIMARY KEY (`id`),
-  KEY `KLARNA_CORE_ORDER_IS_ACKNOWLEDGED` (`is_acknowledged`),
-  KEY `KLARNA_CORE_ORDER_ORDER_ID` (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Klarna Order';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `klarna_core_order`
---
-
-LOCK TABLES `klarna_core_order` WRITE;
-/*!40000 ALTER TABLE `klarna_core_order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `klarna_core_order` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `klarna_payments_quote`
---
-
-DROP TABLE IF EXISTS `klarna_payments_quote`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `klarna_payments_quote` (
-  `payments_quote_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Payments Id',
-  `session_id` varchar(255) DEFAULT NULL COMMENT 'Klarna Session Id',
-  `client_token` text COMMENT 'Klarna Client Token',
-  `authorization_token` varchar(255) DEFAULT NULL COMMENT 'Authorization Token',
-  `is_active` smallint(6) NOT NULL DEFAULT '0' COMMENT 'Is Active',
-  `quote_id` int(10) unsigned NOT NULL COMMENT 'Quote Id',
-  `payment_methods` varchar(255) DEFAULT NULL COMMENT 'Payment Method Categories',
-  `payment_method_info` text COMMENT 'Payment Method Category Info',
-  PRIMARY KEY (`payments_quote_id`),
-  KEY `KLARNA_PAYMENTS_QUOTE_QUOTE_ID` (`quote_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Klarna Payments Quote';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `klarna_payments_quote`
---
-
-LOCK TABLES `klarna_payments_quote` WRITE;
-/*!40000 ALTER TABLE `klarna_payments_quote` DISABLE KEYS */;
-/*!40000 ALTER TABLE `klarna_payments_quote` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -8894,7 +8840,7 @@ CREATE TABLE `magento_reward` (
   UNIQUE KEY `MAGENTO_REWARD_CUSTOMER_ID_WEBSITE_ID` (`customer_id`,`website_id`),
   KEY `MAGENTO_REWARD_WEBSITE_ID` (`website_id`),
   CONSTRAINT `MAGENTO_REWARD_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Enterprise Reward';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Enterprise Reward';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8903,6 +8849,7 @@ CREATE TABLE `magento_reward` (
 
 LOCK TABLES `magento_reward` WRITE;
 /*!40000 ALTER TABLE `magento_reward` DISABLE KEYS */;
+INSERT INTO `magento_reward` VALUES (1,1,1,0,NULL);
 /*!40000 ALTER TABLE `magento_reward` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -10093,7 +10040,7 @@ CREATE TABLE `mview_state` (
 
 LOCK TABLES `mview_state` WRITE;
 /*!40000 ALTER TABLE `mview_state` DISABLE KEYS */;
-INSERT INTO `mview_state` VALUES (1,'scconnector_google_remove','enabled','idle','2020-01-31 18:43:16',NULL),(2,'scconnector_google_feed','enabled','idle','2020-01-31 18:43:17',NULL);
+INSERT INTO `mview_state` VALUES (1,'scconnector_google_remove','enabled','idle','2020-02-05 14:40:04',NULL),(2,'scconnector_google_feed','enabled','idle','2020-02-05 14:40:05',NULL);
 /*!40000 ALTER TABLE `mview_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -10373,7 +10320,7 @@ CREATE TABLE `oauth_token` (
   CONSTRAINT `OAUTH_TOKEN_ADMIN_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`admin_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE,
   CONSTRAINT `OAUTH_TOKEN_CONSUMER_ID_OAUTH_CONSUMER_ENTITY_ID` FOREIGN KEY (`consumer_id`) REFERENCES `oauth_consumer` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `OAUTH_TOKEN_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='OAuth Tokens';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='OAuth Tokens';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10382,6 +10329,7 @@ CREATE TABLE `oauth_token` (
 
 LOCK TABLES `oauth_token` WRITE;
 /*!40000 ALTER TABLE `oauth_token` DISABLE KEYS */;
+INSERT INTO `oauth_token` VALUES (1,NULL,NULL,1,'access','9rzrwp4dupyea2zv7zzj03a8klmus7ks','0j7chapch85l21uh2jxp8babdnvmxzlb',NULL,'',0,0,3,'2020-02-05 14:55:52');
 /*!40000 ALTER TABLE `oauth_token` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -10400,7 +10348,7 @@ CREATE TABLE `oauth_token_request_log` (
   `lock_expires_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Lock expiration time',
   PRIMARY KEY (`log_id`),
   UNIQUE KEY `OAUTH_TOKEN_REQUEST_LOG_USER_NAME_USER_TYPE` (`user_name`,`user_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Log of token request authentication failures.';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Log of token request authentication failures.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -10409,6 +10357,7 @@ CREATE TABLE `oauth_token_request_log` (
 
 LOCK TABLES `oauth_token_request_log` WRITE;
 /*!40000 ALTER TABLE `oauth_token_request_log` DISABLE KEYS */;
+INSERT INTO `oauth_token_request_log` VALUES (1,'dcpires@rd.com.br',2,1,'2020-02-05 15:22:43');
 /*!40000 ALTER TABLE `oauth_token_request_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -10879,7 +10828,7 @@ CREATE TABLE `queue_poison_pill` (
 
 LOCK TABLES `queue_poison_pill` WRITE;
 /*!40000 ALTER TABLE `queue_poison_pill` DISABLE KEYS */;
-INSERT INTO `queue_poison_pill` VALUES ('version-5e38375a1f60e');
+INSERT INTO `queue_poison_pill` VALUES ('version-5e3ad39e8a65c');
 /*!40000 ALTER TABLE `queue_poison_pill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -13523,7 +13472,7 @@ CREATE TABLE `wishlist` (
   KEY `WISHLIST_SHARED` (`shared`),
   KEY `WISHLIST_CUSTOMER_ID` (`customer_id`),
   CONSTRAINT `WISHLIST_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Wishlist main Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Wishlist main Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -13532,6 +13481,7 @@ CREATE TABLE `wishlist` (
 
 LOCK TABLES `wishlist` WRITE;
 /*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
+INSERT INTO `wishlist` VALUES (1,1,0,'n2AMvldErL7w0zx8ZYc1LBYUtLLEpGmB','2020-02-05 14:55:07',NULL,0);
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -13659,7 +13609,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-03 12:24:26
+-- Dump completed on 2020-02-05 11:57:19
 -- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: magento2_sales
@@ -13678,36 +13628,11 @@ UNLOCK TABLES;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `amazon_sales_order`
---
-DROP DATABASE IF EXISTS magento2_sales;
-CREATE SCHEMA `magento2_sales` DEFAULT CHARACTER SET utf8 ;
-USE magento2_sales;
-DROP TABLE IF EXISTS `amazon_sales_order`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `amazon_sales_order` (
-  `entity_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Entity ID',
-  `order_id` int(10) unsigned NOT NULL COMMENT 'Order ID',
-  `amazon_order_reference_id` varchar(255) NOT NULL COMMENT 'Amazon Order Reference ID',
-  PRIMARY KEY (`entity_id`),
-  UNIQUE KEY `AMAZON_SALES_ORDER_ORDER_ID` (`order_id`),
-  CONSTRAINT `AMAZON_SALES_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='amazon_sales_order';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `amazon_sales_order`
---
-
-LOCK TABLES `amazon_sales_order` WRITE;
-/*!40000 ALTER TABLE `amazon_sales_order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `amazon_sales_order` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `magento_customercustomattributes_sales_flat_order`
 --
+DROP DATABASE magento2_sales;
+CREATE SCHEMA `magento2_sales` DEFAULT CHARACTER SET utf8 ;
+USE magento2_sales;
 
 DROP TABLE IF EXISTS `magento_customercustomattributes_sales_flat_order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -16642,12 +16567,16 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-03 12:24:26
+-- Dump completed on 2020-02-05 11:57:19
 -- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: magento2_quote
 -- ------------------------------------------------------
 -- Server version	5.7.26-29
+
+DROP DATABASE magento2_quote;
+CREATE SCHEMA `magento2_quote` DEFAULT CHARACTER SET utf8 ;
+USE magento2_quote;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16659,38 +16588,6 @@ UNLOCK TABLES;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `amazon_quote`
---
-
-DROP DATABASE IF EXISTS magento2_quote;
-CREATE SCHEMA `magento2_quote` DEFAULT CHARACTER SET utf8 ;
-USE magento2_quote;
-
-DROP TABLE IF EXISTS `amazon_quote`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `amazon_quote` (
-  `entity_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Entity ID',
-  `quote_id` int(10) unsigned NOT NULL COMMENT 'Quote ID',
-  `amazon_order_reference_id` varchar(255) NOT NULL COMMENT 'Amazon Order Reference ID',
-  `sandbox_simulation_reference` varchar(255) DEFAULT NULL COMMENT 'Sandbox simulation reference',
-  `confirmed` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Quote confirmed with Amazon',
-  PRIMARY KEY (`entity_id`),
-  UNIQUE KEY `AMAZON_QUOTE_QUOTE_ID` (`quote_id`),
-  CONSTRAINT `AMAZON_QUOTE_QUOTE_ID_QUOTE_ENTITY_ID` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='amazon_quote';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `amazon_quote`
---
-
-LOCK TABLES `amazon_quote` WRITE;
-/*!40000 ALTER TABLE `amazon_quote` DISABLE KEYS */;
-/*!40000 ALTER TABLE `amazon_quote` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `magento_customercustomattributes_sales_flat_quote`
@@ -16712,6 +16609,7 @@ CREATE TABLE `magento_customercustomattributes_sales_flat_quote` (
 
 LOCK TABLES `magento_customercustomattributes_sales_flat_quote` WRITE;
 /*!40000 ALTER TABLE `magento_customercustomattributes_sales_flat_quote` DISABLE KEYS */;
+INSERT INTO `magento_customercustomattributes_sales_flat_quote` VALUES (1);
 /*!40000 ALTER TABLE `magento_customercustomattributes_sales_flat_quote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -16735,6 +16633,7 @@ CREATE TABLE `magento_customercustomattributes_sales_flat_quote_address` (
 
 LOCK TABLES `magento_customercustomattributes_sales_flat_quote_address` WRITE;
 /*!40000 ALTER TABLE `magento_customercustomattributes_sales_flat_quote_address` DISABLE KEYS */;
+INSERT INTO `magento_customercustomattributes_sales_flat_quote_address` VALUES (1),(2);
 /*!40000 ALTER TABLE `magento_customercustomattributes_sales_flat_quote_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -16833,7 +16732,7 @@ CREATE TABLE `quote` (
   PRIMARY KEY (`entity_id`),
   KEY `QUOTE_CUSTOMER_ID_STORE_ID_IS_ACTIVE` (`customer_id`,`store_id`,`is_active`),
   KEY `QUOTE_STORE_ID` (`store_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -16842,6 +16741,7 @@ CREATE TABLE `quote` (
 
 LOCK TABLES `quote` WRITE;
 /*!40000 ALTER TABLE `quote` DISABLE KEYS */;
+INSERT INTO `quote` VALUES (1,1,'2020-02-05 14:55:07','2020-02-05 14:55:07',NULL,1,0,0,0,0.0000,0,0.0000,0.0000,'USD','USD','USD',0.0000,0.0000,NULL,1,NULL,1,'cliente@rd.com.br',NULL,'Cliente',NULL,'Novo',NULL,NULL,NULL,1,0,'172.26.0.1',NULL,NULL,NULL,NULL,'USD',1.0000,1.0000,NULL,NULL,0.0000,0.0000,0.0000,0.0000,1,0,NULL,0.0000,0.0000,NULL,NULL,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,0,0.0000,0.0000);
 /*!40000 ALTER TABLE `quote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -16951,7 +16851,7 @@ CREATE TABLE `quote_address` (
   PRIMARY KEY (`address_id`),
   KEY `QUOTE_ADDRESS_QUOTE_ID` (`quote_id`),
   CONSTRAINT `QUOTE_ADDRESS_QUOTE_ID_QUOTE_ENTITY_ID` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote Address';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote Address';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -16960,6 +16860,7 @@ CREATE TABLE `quote_address` (
 
 LOCK TABLES `quote_address` WRITE;
 /*!40000 ALTER TABLE `quote_address` DISABLE KEYS */;
+INSERT INTO `quote_address` VALUES (1,1,'2020-02-05 14:55:07','2020-02-05 14:55:07',1,0,NULL,'billing','cliente@rd.com.br',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,'null',NULL,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.0000,0.0000,0.0000,0.0000,'[]','[]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,0,0.0000,0.0000),(2,1,'2020-02-05 14:55:07','2020-02-05 14:55:07',1,0,NULL,'shipping','cliente@rd.com.br',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,'null',NULL,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.0000,0.0000,0.0000,0.0000,'[]','[]',NULL,NULL,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,0,0.0000,0.0000);
 /*!40000 ALTER TABLE `quote_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -17448,4 +17349,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-03 12:24:26
+-- Dump completed on 2020-02-05 11:57:19

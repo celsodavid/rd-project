@@ -35,6 +35,13 @@ Usuário: admin
 Senha: admin123 
 ```
    
+### Cliente Padrão
+Já existe o cadastro de um cliente, para a `drogasil`
+```
+Usuário: cliente@rd.com.br
+Senha: RD@123456
+```
+   
 #### Utilities
 
 - Docker
