@@ -1,8 +1,7 @@
 #!/bin/bash
-
 ARG=$1
 
-export UID=${UID}
+export USERID=${UID}
 export GID=${GID}
 
 if ! test $ARG; then

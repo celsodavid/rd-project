@@ -1,6 +1,5 @@
 #!/bin/bash
-
-export UID=${UID}
+export USERID=${UID}
 export GID=${GID}
 
 docker-compose exec php bash -c "bin/magento c:c; bin/magento c:f;"

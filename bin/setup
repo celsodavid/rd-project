@@ -1,6 +1,5 @@
 #!/bin/bash
-
-export UID=${UID}
+export USERID=${UID}
 export GID=${GID}
 
 cp ./.docker/config/magento/env.php src/app/etc/

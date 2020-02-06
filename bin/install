@@ -1,6 +1,5 @@
 #!/bin/bash
-
-export UID=${UID}
+export USERID=${UID}
 export GID=${GID}
 
 echo -e "\nConfigurando permissão de diretórios\n";
