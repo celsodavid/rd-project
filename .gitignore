@@ -7,3 +7,5 @@
 .docker/postgres_data
 !.docker/postgres_data/.keep
 .idea
+src/ms
+src/pkg
