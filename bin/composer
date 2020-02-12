@@ -1,6 +1,7 @@
 #!/bin/bash
+
 export USERID=${UID}
-export GID=${GID}
+export GROUPID=${GID}
 
 ARG1=$1
 ARG2=$2

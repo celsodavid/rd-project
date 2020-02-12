@@ -1,11 +1,14 @@
-FROM php:7.3.12-fpm-alpine
+ARG PHP_VERSION
+FROM php:${PHP_VERSION}-alpine
 
-RUN apk upgrade --update && apk update && apk add jpeg-dev libpng-dev freetype-dev \
-    libxslt-dev icu-dev libzip-dev bash supervisor
+RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
+    jpeg-dev libpng-dev freetype-dev libxslt-dev icu-dev libzip-dev bash supervisor bzip2-dev postgresql-dev icu-libs \
+  && pecl install mongodb-1.6.1 redis xdebug \
+  && docker-php-ext-enable mongodb redis xdebug \
+  && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+  && docker-php-ext-configure intl --enable-intl
 
-# install extensions
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-&& docker-php-ext-install gd bcmath xsl intl pdo pdo_mysql soap zip
+RUN docker-php-ext-install gd bcmath intl xsl pdo pdo_mysql soap zip bz2 calendar exif pdo_pgsql pgsql
 
 # COMPOSER
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \

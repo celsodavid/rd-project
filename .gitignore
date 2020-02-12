@@ -4,4 +4,6 @@
 !.docker/es_data/.keep
 .docker/mongo_data
 !.docker/mongo_data/.keep
+.docker/postgres_data
+!.docker/postgres_data/.keep
 .idea
