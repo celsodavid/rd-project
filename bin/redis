@@ -1,5 +1,4 @@
 #!/bin/bash
-
 ARG=$1
 
 export USERID=${UID}
