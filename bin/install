@@ -3,10 +3,12 @@
 export UID=${UID}
 export GID=${GID}
 
+
 echo -e "\nConfigurando permissão de diretórios\n";
 sudo chmod 777 -R .docker/percona_data;
 sudo chmod 777 -R .docker/es_data;
 sudo chmod 777 -R .docker/mongo_data;
+sudo chmod 777 -R .docker/postgres_data;
 
 echo -e "\nParando serviços docker\n";
 docker-compose stop;
@@ -18,18 +20,27 @@ docker-compose up -d; docker-compose ps;
 echo -e "\n"
 bin/ssl
 
+
+
 echo -e "\nInstala Prestissimo para o composer\n";
 docker-compose exec php bash -c "composer global require hirak/prestissimo";
 echo -e "\nInicializando submódulos\n";
 git submodule init; git submodule update;
 echo -e "\nInstalação dos módulos Composer\n";
-docker-compose exec php bash -c "composer install";
+docker-compose exec php bash -c "cd m2 && composer install";
 echo -e "\nPermissão de diretórios Magento 2\n";
-docker-compose exec php bash -c "find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +";
-docker-compose exec php bash -c "find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +";
-docker-compose exec php bash -c "chmod u+x bin/magento";
+docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type f -exec chmod g+w {} +";
+docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type d -exec chmod g+ws {} +";
+docker-compose exec php bash -c "chmod u+x m2/bin/magento";
+
+echo -e "\nCriar diretorios auxiliares\n";
+sudo mkdir ./src/ms;
+sudo mkdir ./src/pkg;
+sudo chmod 777 ./src/ms;
+sudo chmod 777 ./src/pkg;
+docker-compose exec php bash -c "composer global require laravel/lumen-installer";
 
 echo -e "\nRestore do banco de dados\n";
 bin/mysql restore
-
+#
 bin/setup

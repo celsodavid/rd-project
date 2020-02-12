@@ -16,6 +16,8 @@ if [ $ARG = "bash" ]; then
 fi
 
 if [ $ARG = "restore" ]; then
+    docker-compose exec mysql bash -c "mysql -uroot -p123123 < /dump/create_schema.sql"
     docker-compose exec mysql bash -c "mysql -uroot -p123123 < /dump/magento2.sql"
     exit;
 fi
+

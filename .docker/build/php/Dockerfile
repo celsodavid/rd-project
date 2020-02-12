@@ -1,17 +1,46 @@
-FROM php:7.3.12-fpm-alpine
 
-RUN apk upgrade --update && apk update && apk add jpeg-dev libpng-dev freetype-dev \
-    libxslt-dev icu-dev libzip-dev bash supervisor
+ARG PHP_VERSION
+FROM php:${PHP_VERSION}
 
-# install extensions
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-&& docker-php-ext-install gd bcmath xsl intl pdo pdo_mysql soap zip
+# PHP extensions and dependencies
+ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
+
+RUN chmod uga+x /usr/local/bin/install-php-extensions && sync
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -qq -y \
+      curl \
+      git \
+    && install-php-extensions \
+      bcmath \
+      bz2 \
+      calendar \
+      exif \
+      gd \
+      intl \
+      ldap \
+      mongodb \
+      pdo_mysql \
+      pdo_pgsql \
+      pgsql \
+      redis \
+      soap \
+      xsl \
+      zip \
+      mcrypt \
+      xdebug \
+      gettext
+
+#RUN apt-get update && apt-get install jpeg-dev libpng-dev freetype-dev \
+#    libxslt-dev icu-dev libzip-dev bash supervisor
 
 # COMPOSER
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     mkdir /usr/local/.composer && chmod 777 -R /usr/local/.composer
 
-# Set default locale for the environment
-ENV LC_ALL C.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
+
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+RUN sed -i "s/xdebug.remote_autostart=0/xdebug.remote_autostart=1/" /usr/local/etc/php/conf.d/xdebug.ini && \
+    sed -i "s/xdebug.remote_enable=0/xdebug.remote_enable=1/" /usr/local/etc/php/conf.d/xdebug.ini && \
+    sed -i "s/xdebug.cli_color=0/xdebug.cli_color=1/" /usr/local/etc/php/conf.d/xdebug.ini

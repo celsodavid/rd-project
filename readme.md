@@ -4,10 +4,11 @@
 - Nginx
 - PHP 7.3
 - MySQL (Percona)
-- RabbitMQ
+- PostGres
+- Mongo DB
 - Redis
 - Elastic Cache
-- Mongo DB
+- RabbitMQ
 
 ### Getting Started
 
@@ -110,3 +111,37 @@ Senha: RD@123456
         # enable cert
         bin/ssl
     ```       
+
+
+
+#### Acessar
+- RabbitMQ 
+
+    ```
+        /** url local */
+        http://127.0.0.1:15672
+        user: guest
+        pass: guest
+    ```
+
+- PostGres 
+
+    ```
+        /** user root */
+        user: root
+        pass: 123123
+    ```
+
+- Redis 
+
+    ```
+        # acess conteiner
+        docker-composer exec redis bash
+    ``` 
+
+    ```
+        # list all keys
+        redis-cli
+	keys [*]
+    ```
+
