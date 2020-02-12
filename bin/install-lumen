@@ -10,12 +10,15 @@ if ! test $folder; then
    exit
 fi
 
+sudo mkdir ./src/ms;
+sudo chmod 777 ./src/ms;
+
 #limpar nome da pasta
 folderReal="$(tr [A-Z] [a-z] <<< "$folder")"
 
 docker-compose exec php bash -c "cd ms && composer create-project --prefer-dist laravel/lumen:5.8 "$folderReal;
 
-sudo chmod 777 ./src/ms/$FOLDER;
+sudo chmod 777 ./src/ms/$folderReal;
 
 #alterar os arquivos
 cp ./.docker/config/lumen/app.php src/ms/$folderReal/bootstrap
