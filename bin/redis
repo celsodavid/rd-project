@@ -2,7 +2,7 @@
 ARG=$1
 
 export USERID=${UID}
-export GID=${GID}
+export GROUPID=${GID}
 
 if ! test $ARG; then
    docker-compose exec redis redis-cli

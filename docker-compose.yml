@@ -27,6 +27,7 @@ services:
           - drogaraia.local
           - onofre.local
 
+
   mysql:
     image: percona
     volumes:
@@ -37,20 +38,37 @@ services:
       MYSQL_ROOT_PASSWORD: 123123
       MYSQL_USER: usr_drogasil
       MYSQL_PASSWORD: 123123
-      MYSQL_DATABASE: mage2
+      MYSQL_DATABASE: magento2
+
     ports:
       - "3306:3306"
     networks:
       - rd_magento2
 
+
+  postgres:
+      image: postgres
+      restart: always
+      volumes:
+        - ./.docker/postgres_data:/docker-entrypoint-initdb.d/
+      environment:
+          POSTGRES_USER: usr_drogasil
+          POSTGRES_PASSWORD: 123123
+          POSTGRES_DB: microservice
+      ports:
+          - 5432:5432
+
+
   rabbitmq:
     image: rabbitmq:3.6-management
+    restart: always
     volumes:
       - ./.docker/config/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
     ports:
       - "15672:15672"
     networks:
       - rd_magento2
+
 
   redis:
     image: redis
@@ -60,7 +78,10 @@ services:
       - rd_magento2
         
   php:
-    build: ./.docker/build/php
+    build: 
+      context: ./.docker/build/php
+      args:
+        PHP_VERSION: ${PHP_VERSION}
     environment:
       COMPOSER_HOME: /usr/local/.composer
     volumes:
@@ -69,9 +90,10 @@ services:
       - ./.docker/config/php/www.conf:/usr/local/etc/php-fpm.d/raiadrogasil.conf
       - ./.docker/config/php/auth.json:/usr/local/.composer/auth.json
       - ./.docker/config/nginx/ssl/certificate.pem:/usr/local/etc/php/conf.d/certificate.pem
-    user: "${USERID}:${GID}"
+    user: "${USERID}:${GROUPID}"
     networks:
       - rd_magento2
+
 
   elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.8.6
@@ -84,8 +106,10 @@ services:
     networks:
       - rd_magento2
 
+
   mongodb:
-    build: ./.docker/build/php
+    image: mongo
+    restart: always
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
@@ -93,6 +117,7 @@ services:
       - ./.docker/mongo_data:/data/db
     ports:
         - 27017:27017
+        
 
 networks:
   rd_magento2:
