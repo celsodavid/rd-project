@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export UID=${UID}
-export GID=${GID}
+export USERID=${UID}
+export GROUPID=${GID}
 
 docker-compose exec php bash -c "m2/bin/magento c:c; m2/bin/magento c:f;"
 bin/redis clean

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export UID=${UID}
-export GID=${GID}
+export USERID=${UID}
+export GROUPID=${GID}
 
 docker-compose exec php bash -c "composer install"

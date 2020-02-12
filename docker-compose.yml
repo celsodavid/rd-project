@@ -90,7 +90,7 @@ services:
       - ./.docker/config/php/www.conf:/usr/local/etc/php-fpm.d/raiadrogasil.conf
       - ./.docker/config/php/auth.json:/usr/local/.composer/auth.json
       - ./.docker/config/nginx/ssl/certificate.pem:/usr/local/etc/php/conf.d/certificate.pem
-    user: "${UID}:${GID}"
+    user: "${USERID}:${GROUPID}"
     networks:
       - rd_magento2
 
