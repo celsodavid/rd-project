@@ -57,6 +57,8 @@ services:
           POSTGRES_DB: microservice
       ports:
           - 5432:5432
+      networks:
+        - rd_magento2
 
 
   rabbitmq:
@@ -117,6 +119,8 @@ services:
       - ./.docker/mongo_data:/data/db
     ports:
         - 27017:27017
+    networks:
+      - rd_magento2
         
 
 networks:
