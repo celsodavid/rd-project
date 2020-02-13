@@ -1,4 +1,4 @@
-version: "2.2"
+version: "3.2"
 
 services:
 
@@ -27,7 +27,6 @@ services:
           - drogaraia.local
           - onofre.local
 
-
   mysql:
     image: percona
     volumes:
@@ -39,12 +38,10 @@ services:
       MYSQL_USER: usr_drogasil
       MYSQL_PASSWORD: 123123
       MYSQL_DATABASE: magento2
-
     ports:
       - "3306:3306"
     networks:
       - rd_magento2
-
 
   postgres:
       image: postgres
@@ -60,7 +57,6 @@ services:
       networks:
         - rd_magento2
 
-
   rabbitmq:
     image: rabbitmq:3.6-management
     restart: always
@@ -70,7 +66,6 @@ services:
       - "15672:15672"
     networks:
       - rd_magento2
-
 
   redis:
     image: redis
@@ -96,7 +91,6 @@ services:
     networks:
       - rd_magento2
 
-
   elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.8.6
     ports: 
@@ -107,7 +101,6 @@ services:
       - "./.docker/es_data:/usr/share/elasticsearch/data"
     networks:
       - rd_magento2
-
 
   mongodb:
     image: mongo
@@ -121,7 +114,38 @@ services:
         - 27017:27017
     networks:
       - rd_magento2
-        
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.8.6
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_HOSTS: http://elastic:9200
+    networks:
+      - rd_magento2
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.8.6
+    ports:
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
+    volumes:
+      - type: bind
+        source: ./.docker/config/logstash/logstash.yml
+        target: /usr/share/logstash/config/logstash.yml
+        read_only: true
+      - type: bind
+        source: ./.docker/config/logstash/pipeline
+        target: /usr/share/logstash/pipeline
+        read_only: true
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - rd_magento2
+    depends_on:
+      - elastic
+
 
 networks:
   rd_magento2:
