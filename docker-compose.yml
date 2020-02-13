@@ -121,6 +121,7 @@ services:
       - 5601:5601
     environment:
       ELASTICSEARCH_HOSTS: http://elastic:9200
+      ELASTICSEARCH_URL: http://elastic:9200/
     networks:
       - rd_magento2
 
@@ -146,6 +147,20 @@ services:
     depends_on:
       - elastic
 
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:6.8.6
+    command: --strict.perms=false
+    environment:
+      - setup.kibana.host=kibana:5601
+      - output.elasticsearch.hosts=["elastic:9200"]
+    ports:
+      - 9000:9000
+    volumes:
+      - ./.docker/config/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - rd_magento2
 
 networks:
   rd_magento2:
