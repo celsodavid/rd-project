@@ -1,6 +1,13 @@
 #!/bin/bash
 ARG=$1
 
+USER=whoami | awk '{print $1}'
+
+if [ $USER = "root" ]; then
+    echo "Não utilize sudo";
+    exit
+fi
+
 export USERID=${UID}
 export GROUPID=${GID}
 
