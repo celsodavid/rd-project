@@ -23,6 +23,10 @@ filebeat.inputs:
     multiline.pattern: "^\t|^[[:space:]]+(at|...)|^Caused by:"
     multiline.match: after
     processors:
+      - decode_json_fields:
+          fields: ["log"]
+          target: ""
+          overwrite_keys: true
       - add_docker_metadata: ~
       - add_cloud_metadata: ~
       - add_locale: ~
