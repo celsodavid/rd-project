@@ -1,4 +1,11 @@
 #!/bin/bash
+USER=whoami | awk '{print $1}'
+
+if [ $USER = "root" ]; then
+    echo "Não utilize sudo";
+    exit
+fi
+
 
 pkgs='libnss3-tools'
 

@@ -9,6 +9,9 @@
 - Redis
 - Elastic Cache
 - RabbitMQ
+- Kibana
+- Logstash
+- Filebeat
 
 ### Getting Started
 
@@ -43,105 +46,100 @@ Usuário: cliente@rd.com.br
 Senha: RD@123456
 ```
    
-#### Utilities
+## Utilities
 
 - Docker
 
     ```
-        # iniciar container
-        bin/dev start  
+    # iniciar container
+    bin/dev start  
 
-        # stop containers
-        bin/dev stop
+    # stop containers
+    bin/dev stop
         
-        # restart containers
-        bin/dev restart
+    # restart containers
+    bin/dev restart
   
-        # ver status containers
-        bin/dev status
+    # ver status containers
+    bin/dev status
   
-        # atualizar imagens dos containers
-        bin/dev build
-  
+    # atualizar imagens dos containers
+    bin/dev build  
     ```
 - PHP
 
     ```
-        # access php bash
-        bin/php
+    # access php bash
+    bin/php
   
-        # run script php in container
-        bin/php [arg]   
+    # run script php in container
+    bin/php [arg]   
     ```
 
 - Mysql 
 
+    Para acessar o container do mysql:
+
     ```
-        # access container
-        bin/mysql
-        
-        /** user root */
-        user: root
-        pass: 123123
+    bin/mysql
+    ``` 
+    Usuário root
     ```
-  
+    user: root
+    pass: 123123
+    ```
+
 - Clean Full Cache 
 
     ```
-        bin/cache
+    bin/cache
     ```  
 
 - Redis  
 
-    Para acessar o console do redis:
+    Para acessar a cli do redis:
 
     ```
-        bin/redis
+    bin/redis
+    ``` 
+    Para acessar o container do redis:
+
+    ```
+    bin/redis bash
     ``` 
     
     Limpar o cache do redis
     
     ```
-        bin/redis clean
+    bin/redis clean
+    ```  
+    
+    Monitor do redis
+    
+    ```
+    bin/redis monitor
     ```  
 
 - SSL 
 
     ```
-        # enable cert
-        bin/ssl
+    # Habilitar Certificados
+    bin/ssl
     ```       
 
-
-
-#### Acessar
 - RabbitMQ 
 
-    ```
-        /** url local */
-        http://127.0.0.1:15672
-        user: guest
-        pass: guest
-    ```
-
-- PostGres 
+    Para acessar o container do mysql:
 
     ```
-        /** user root */
-        user: root
-        pass: 123123
-    ```
-
-- Redis 
-
-    ```
-        # acess conteiner
-        docker-composer exec redis bash
+    http://localhost:15672
+    user: guest
+    pass: guest
     ``` 
+- Kibana 
+
+    Todos os logs, de todos os containeres, podem ser visualizados no kibana.
 
     ```
-        # list all keys
-        redis-cli
-	keys [*]
-    ```
-
+    http://localhost:5601/
+    ``` 
