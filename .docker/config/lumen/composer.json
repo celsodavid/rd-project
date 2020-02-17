@@ -3,38 +3,35 @@
     "description": "The Laravel Lumen Framework.",
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
-    "type": "project",
-
+    "type": "project",    
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://clagils@bitbucket.org/teamrd_/ms-swagger.git",
-            "branches-path": "master"
+            "type": "path",
+            "url": "../package/raiadrogasil/ms-swagger"
         },
         {
-            "type": "vcs",
-            "url": "https://clagils@bitbucket.org/teamrd_/ms-common.git",
-            "branches-path": "master"
+            "type": "path",
+            "url": "../package/raiadrogasil/ms-common"
         },
         {
-            "type": "vcs",
-            "url": "https://clagils@bitbucket.org/teamrd_/ms-configuration.git",
-            "branches-path": "master"
+            "type": "path",
+            "url": "../package/raiadrogasil/ms-configuration"
         },
         {
-            "type": "vcs",
-            "url": "https://clagils@bitbucket.org/teamrd_/ms-connect.git",
-            "branches-path": "master"
+            "type": "path",
+            "url": "../package/raiadrogasil/ms-connect"
         },
         {
-            "type": "vcs",
-            "url": "https://clagils@bitbucket.org/teamrd_/ms-scaffold.git",
-            "branches-path": "master"
+            "type": "path",
+            "url": "../package/raiadrogasil/ms-connect-token"
         },
         {
-            "type": "vcs",
-            "url": "https://clagils@bitbucket.org/teamrd_/ms-log.git",
-            "branches-path": "master"
+            "type": "path",
+            "url": "../package/raiadrogasil/ms-scaffold"
+        },
+        {
+            "type": "path",
+            "url": "../package/raiadrogasil/ms-log"
         }
     ],
     "require": {

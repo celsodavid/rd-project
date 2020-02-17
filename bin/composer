@@ -10,4 +10,12 @@ fi
 export USERID=${UID}
 export GROUPID=${GID}
 
-docker-compose exec php bash -c "composer install"
+ARG1=$1
+ARG2=$2
+
+if ! test $ARG1; then
+  echo "O que você deseja fazer com o composer?"
+  exit
+fi
+
+docker-compose exec php bash -c "composer $ARG1 $ARG2"
