@@ -40,11 +40,6 @@ docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/stati
 docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type d -exec chmod g+ws {} +";
 docker-compose exec php bash -c "chmod u+x m2/bin/magento";
 
-echo -e "\nCriar diretorios auxiliares\n";
-sudo mkdir ./src/ms;
-sudo mkdir ./src/pkg;
-sudo chmod 777 ./src/ms;
-sudo chmod 777 ./src/pkg;
 docker-compose exec php bash -c "composer global require laravel/lumen-installer";
 
 echo -e "\nRestore do banco de dados\n";
