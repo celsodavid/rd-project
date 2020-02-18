@@ -6,10 +6,8 @@ if [ $USER = "root" ]; then
     exit
 fi
 
-
 export USERID=${UID}
 export GROUPID=${GID}
-
 
 echo -e "\nConfigurando permissão de diretórios\n";
 sudo chmod 777 -R .docker/percona_data;
@@ -29,8 +27,6 @@ docker-compose up -d; docker-compose ps;
 
 echo -e "\n"
 bin/ssl
-
-
 
 echo -e "\nInstala Prestissimo para o composer\n";
 docker-compose exec php bash -c "composer global require hirak/prestissimo";
@@ -52,5 +48,4 @@ docker-compose exec php bash -c "composer global require laravel/lumen-installer
 
 echo -e "\nRestore do banco de dados\n";
 bin/mysql restore
-#
 bin/setup
