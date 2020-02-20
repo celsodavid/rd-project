@@ -16,12 +16,14 @@ sudo chmod 777 -R .docker/mongo_data;
 sudo chmod 777 -R .docker/postgres_data;
 
 echo -e "\nSetando max_map_count para 262144\n";
-sudo sysctl -w vm.max_map_count=262144;
+sudo echo "vm.max_map_count=262144" >> /etc/sysctl.d/vm_max_count.conf
+sudo sysctl -p --system
 
 echo -e "\nParando serviços docker\n";
 docker-compose stop;
 echo -e "\nBuild do docker\n";
 docker-compose build;
+
 echo -e "\nIniciando serviços docker\n";
 docker-compose up -d; docker-compose ps;
 

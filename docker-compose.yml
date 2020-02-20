@@ -47,7 +47,6 @@ services:
 
   postgres:
       image: postgres
-      restart: always
       volumes:
         - ./.docker/postgres_data:/docker-entrypoint-initdb.d/
       environment:
@@ -61,7 +60,6 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.6-management
-    restart: always
     volumes:
       - ./.docker/config/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
     ports:
@@ -106,7 +104,6 @@ services:
 
   mongodb:
     image: mongo
-    restart: always
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
