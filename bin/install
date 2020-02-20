@@ -6,10 +6,8 @@ if [ $USER = "root" ]; then
     exit
 fi
 
-
 export USERID=${UID}
 export GROUPID=${GID}
-
 
 echo -e "\nConfigurando permissão de diretórios\n";
 sudo chmod 777 -R .docker/percona_data;
@@ -17,17 +15,20 @@ sudo chmod 777 -R .docker/es_data;
 sudo chmod 777 -R .docker/mongo_data;
 sudo chmod 777 -R .docker/postgres_data;
 
+echo -e "\nSetando max_map_count para 262144\n";
+sudo echo "vm.max_map_count=262144" >> /etc/sysctl.d/vm_max_count.conf
+sudo sysctl -p --system
+
 echo -e "\nParando serviços docker\n";
 docker-compose stop;
 echo -e "\nBuild do docker\n";
 docker-compose build;
+
 echo -e "\nIniciando serviços docker\n";
 docker-compose up -d; docker-compose ps;
 
 echo -e "\n"
 bin/ssl
-
-
 
 echo -e "\nInstala Prestissimo para o composer\n";
 docker-compose exec php bash -c "composer global require hirak/prestissimo";
@@ -40,14 +41,8 @@ docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/stati
 docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type d -exec chmod g+ws {} +";
 docker-compose exec php bash -c "chmod u+x m2/bin/magento";
 
-echo -e "\nCriar diretorios auxiliares\n";
-sudo mkdir ./src/ms;
-sudo mkdir ./src/pkg;
-sudo chmod 777 ./src/ms;
-sudo chmod 777 ./src/pkg;
 docker-compose exec php bash -c "composer global require laravel/lumen-installer";
 
 echo -e "\nRestore do banco de dados\n";
 bin/mysql restore
-#
 bin/setup

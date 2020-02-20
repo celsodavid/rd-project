@@ -1,8 +1,8 @@
 ARG PHP_VERSION
 FROM php:${PHP_VERSION}-alpine
 
-RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
-    jpeg-dev libpng-dev freetype-dev libxslt-dev icu-dev libzip-dev bash supervisor bzip2-dev postgresql-dev icu-libs \
+RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf openssh \
+    jpeg-dev libpng-dev freetype-dev libxslt-dev icu-dev libzip-dev bash supervisor bzip2-dev postgresql-dev icu-libs git \
   && pecl install mongodb-1.6.1 redis xdebug \
   && docker-php-ext-enable mongodb redis xdebug \
   && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
