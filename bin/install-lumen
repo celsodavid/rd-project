@@ -13,29 +13,36 @@ export GROUPID=${GID}
 folder=$1
 
 if ! test $folder; then
-   echo -e "\nDiretórios não especificado\n";
+   echo -e "\nDiretório não especificado\n";
    exit
 fi
 
+
+echo -e "\nCriar diretorios auxiliares\n";
 sudo mkdir ./src/ms;
+sudo mkdir ./src/pkg;
 sudo chmod 777 ./src/ms;
+sudo chmod 777 ./src/pkg;
 
 #limpar nome da pasta
 folderReal="$(tr [A-Z] [a-z] <<< "$folder")"
 
 docker-compose exec php bash -c "cd ms && composer create-project --prefer-dist laravel/lumen:5.8 "$folderReal;
 
-sudo chmod 777 ./src/ms/$folderReal;
+sudo chmod -R 777 ./src/ms/$folderReal;
+
+#atualizar o composer
+cp ./.docker/config/lumen/composer.json src/ms/$folderReal
+docker-compose exec php bash -c "cd ms/$folderReal && composer u";
 
 #alterar os arquivos
 cp ./.docker/config/lumen/app.php src/ms/$folderReal/bootstrap
 cp ./.docker/config/lumen/AppServiceProvider.php src/ms/$folderReal/app/Providers
-cp ./.docker/config/lumen/composer.json src/ms/$folderReal
 
-#atualizar o composer
-docker-compose exec php bash -c "cd ms/$folderReal && composer u";
 
 #inicializar o modulo principal
 docker-compose exec php bash -c "cd ms/$folderReal && php artisan rd:config-init "$folderReal;
+
+sudo chmod -R 777 ./src/ms/$folderReal;
 
 

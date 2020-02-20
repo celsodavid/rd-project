@@ -3,35 +3,35 @@
     "description": "The Laravel Lumen Framework.",
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
-    "type": "project",    
+    "type": "project",  
     "repositories": [
         {
             "type": "path",
-            "url": "../package/raiadrogasil/ms-swagger"
+            "url": "../../pkg/ms-swagger"
         },
         {
             "type": "path",
-            "url": "../package/raiadrogasil/ms-common"
+            "url": "../../pkg/ms-common"
         },
         {
             "type": "path",
-            "url": "../package/raiadrogasil/ms-configuration"
+            "url": "../../pkg/ms-configuration"
         },
         {
             "type": "path",
-            "url": "../package/raiadrogasil/ms-connect"
+            "url": "../../pkg/ms-connect"
         },
         {
             "type": "path",
-            "url": "../package/raiadrogasil/ms-connect-token"
+            "url": "../../pkg/ms-connect-token"
         },
         {
             "type": "path",
-            "url": "../package/raiadrogasil/ms-scaffold"
+            "url": "../../pkg/ms-scaffold"
         },
         {
             "type": "path",
-            "url": "../package/raiadrogasil/ms-log"
+            "url": "../../pkg/ms-log"
         }
     ],
     "require": {
@@ -40,6 +40,7 @@
         "raiadrogasil/common": "0.*",
         "raiadrogasil/configuration": "0.*",
         "raiadrogasil/connect": "0.*",
+        "raiadrogasil/token": "0.*",
         "raiadrogasil/swagger": "0.*"
     },
     "require-dev": {
