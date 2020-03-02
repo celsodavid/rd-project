@@ -43,6 +43,9 @@ docker-compose exec php bash -c "chmod u+x m2/bin/magento";
 
 docker-compose exec php bash -c "composer global require laravel/lumen-installer";
 
+echo -e "\nCriando diretório com módulos RD da vendor\n";
+ln -s src/m2/vendor/raiadrogasil src/modulos-rd;
+
 echo -e "\nRestore do banco de dados\n";
 bin/mysql restore
 bin/setup
