@@ -19,6 +19,7 @@ services:
       - ./.docker/config/nginx/ssl/onofre/onofre.local.crt:/etc/nginx/onofre.local.crt
       - ./.docker/config/nginx/ssl/onofre/onofre.local.key:/etc/nginx/onofre.local.key
       - ./.docker/config/nginx/magento.conf:/etc/nginx/conf.d/magento.conf
+      - ./.docker/config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./.docker/config/nginx/drogaraia.conf:/etc/nginx/conf.d/drogaraia.conf
       - ./.docker/config/nginx/onofre.conf:/etc/nginx/conf.d/onofre.conf
       - ./.docker/config/nginx/drogasil.conf:/etc/nginx/conf.d/drogasil.conf   
@@ -88,6 +89,7 @@ services:
       - ./src:/var/www/html
       - ./.docker/config/php/php.ini:/usr/local/etc/php/conf.d/raiadrogasil.ini
       - ./.docker/config/php/www.conf:/usr/local/etc/php-fpm.d/raiadrogasil.conf
+      - ./.docker/config/php/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
       - ./.docker/config/php/auth.json:/usr/local/.composer/auth.json
       - ./.docker/config/nginx/ssl/certificate.pem:/usr/local/etc/php/conf.d/certificate.pem
     user: "${USERID}:${GROUPID}"
