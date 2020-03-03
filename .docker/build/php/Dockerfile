@@ -21,3 +21,9 @@ ENV LANGUAGE en_US.UTF-8
 
 ## Uncomment this line and run `bin/dev build` to enable xdebug
 #RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+RUN docker-php-ext-install opcache
+
+#INSTALL APCU
+RUN pecl install apcu-5.1.11 && docker-php-ext-enable apcu
+#APCU
