@@ -45,7 +45,22 @@ Já existe o cadastro de um cliente, para a `drogasil`
 Usuário: cliente@rd.com.br
 Senha: RD@123456
 ```
-   
+
+### Keys para Integração
+Já existe uma integração criada na base com acesso a todos os recursos.
+```
+Consumer Key
+lv16yx5kp1m5l3b3jmx9sm97cf4eokrh
+
+Consumer Secret
+9o8exsrgf4bqyoxymvzhqowq5i5denm4
+
+Access Token
+dwmqv88eog9bii8r6grv8hq8gorset2i
+
+Access Token Secret
+fqf161869ml8n0wuke855bm14ov8rvdv
+```
 ## Utilities
 
 - Docker
