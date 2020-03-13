@@ -17,6 +17,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(\Raiadrogasil\Configuration\ServiceProvider::class);
         $this->app->register(\Raiadrogasil\Connect\ServiceProvider::class);
         $this->app->register(\Raiadrogasil\Token\ServiceProvider::class);
+
+        if ($this->app->environment(['local'])) {
+            $this->app->register(\Raiadrogasil\Test\ServiceProvider::class);
+        }
     }
 }
-

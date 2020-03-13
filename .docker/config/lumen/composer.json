@@ -3,15 +3,15 @@
     "description": "The Laravel Lumen Framework.",
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
-    "type": "project",  
+    "type": "project",
     "repositories": [
         {
             "type": "path",
-            "url": "../../pkg/ms-swagger"
+            "url": "../../pkg/ms-common"
         },
         {
             "type": "path",
-            "url": "../../pkg/ms-common"
+            "url": "../../pkg/ms-swagger"
         },
         {
             "type": "path",
@@ -32,21 +32,28 @@
         {
             "type": "path",
             "url": "../../pkg/ms-log"
+        },
+        {
+            "type": "path",
+            "url": "../../pkg/ms-health-check"
+        },
+        {
+            "type": "path",
+            "url": "../../pkg/ms-util"
+        },
+        {
+            "type": "path",
+            "url": "../../pkg/ms-test"
         }
     ],
     "require": {
-        "php": "^7.2",
-        "laravel/lumen-framework": "^5.8",
         "raiadrogasil/common": "0.*",
         "raiadrogasil/configuration": "0.*",
         "raiadrogasil/connect": "0.*",
-        "raiadrogasil/token": "0.*",
-        "raiadrogasil/swagger": "0.*"
+        "raiadrogasil/token": "0.*"
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.4",
-        "phpunit/phpunit": "^8.0",
-        "mockery/mockery": "^1.0"
+        "raiadrogasil/test": "0.*"
     },
     "autoload": {
         "classmap": [

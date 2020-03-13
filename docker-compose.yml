@@ -20,7 +20,8 @@ services:
       - ./.docker/config/nginx/drogaraia.conf:/etc/nginx/conf.d/drogaraia.conf
       - ./.docker/config/nginx/onofre.conf:/etc/nginx/conf.d/onofre.conf
       - ./.docker/config/nginx/drogasil.conf:/etc/nginx/conf.d/drogasil.conf   
-      - ./.docker/config/nginx/ms-shipping.conf:/etc/nginx/conf.d/ms-shipping.conf     
+      - ./.docker/config/nginx/ms-shipping.conf:/etc/nginx/conf.d/ms-shipping.conf
+      - ./.docker/config/nginx/ms-store.conf:/etc/nginx/conf.d/ms-store.conf    
     networks:
       rd_magento2:
         aliases:
@@ -28,6 +29,7 @@ services:
           - drogaraia.local
           - onofre.local
           - ms-shipping.local
+          - ms-store.local
 
   mysql:
     image: percona
