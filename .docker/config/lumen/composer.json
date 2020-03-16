@@ -6,44 +6,44 @@
     "type": "project",
     "repositories": [
         {
-            "type": "path",
-            "url": "../../pkg/ms-common"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-common"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-swagger"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-swagger"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-configuration"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-configuration"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-connect"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-connect"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-connect-token"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-connect-token"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-scaffold"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-scaffold"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-log"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-log"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-health-check"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-health-check"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-util"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-util"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-test"
+            "type": "git",
+            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-test"
         }
     ],
     "require": {
@@ -77,7 +77,8 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "secure-http": false
     },
     "minimum-stability": "dev",
     "prefer-stable": true
