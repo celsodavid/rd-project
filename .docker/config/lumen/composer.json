@@ -7,43 +7,43 @@
     "repositories": [
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-common"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-common.git"
         },
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-swagger"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-swagger.git"
         },
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-configuration"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-configuration.git"
         },
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-connect"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-connect.git"
         },
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-connect-token"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-connect-token.git"
         },
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-scaffold"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-scaffold.git"
         },
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-log"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-log.git"
         },
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-health-check"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-health-check.git"
         },
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-util"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-util.git"
         },
         {
             "type": "git",
-            "url": "http://git.raiadrogasil.com.br/ecommerce/ecommerce-services/package-php/ms-test"
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-test.git"
         }
     ],
     "require": {
