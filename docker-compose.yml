@@ -25,6 +25,7 @@ services:
       - ./.docker/config/nginx/drogasil.conf:/etc/nginx/conf.d/drogasil.conf   
       - ./.docker/config/nginx/ms-shipping.conf:/etc/nginx/conf.d/ms-shipping.conf
       - ./.docker/config/nginx/ms-store.conf:/etc/nginx/conf.d/ms-store.conf    
+      - ./.docker/config/nginx/ms-search.conf:/etc/nginx/conf.d/ms-search.conf    
     networks:
       rd_magento2:
         aliases:
@@ -33,6 +34,7 @@ services:
           - onofre.local
           - ms-shipping.local
           - ms-store.local
+          - ms-search.local
 
   mysql:
     image: percona
