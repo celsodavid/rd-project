@@ -27,7 +27,7 @@ sudo chmod 777 ./src/pkg;
 #limpar nome da pasta
 folderReal="$(tr [A-Z] [a-z] <<< "$folder")"
 
-docker-compose exec php bash -c "cd ms && composer create-project --prefer-dist laravel/lumen:5.8 "$folderReal;
+docker-compose exec php bash -c "cd ms && composer create-project --prefer-dist laravel/lumen:^6.3 "$folderReal;
 
 sudo chmod -R 777 ./src/ms/$folderReal;
 

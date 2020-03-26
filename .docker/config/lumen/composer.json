@@ -3,50 +3,57 @@
     "description": "The Laravel Lumen Framework.",
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
-    "type": "project",  
+    "type": "project",
     "repositories": [
         {
-            "type": "path",
-            "url": "../../pkg/ms-swagger"
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-common.git"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-common"
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-swagger.git"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-configuration"
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-configuration.git"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-connect"
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-connect.git"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-connect-token"
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-connect-token.git"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-scaffold"
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-scaffold.git"
         },
         {
-            "type": "path",
-            "url": "../../pkg/ms-log"
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-log.git"
+        },
+        {
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-health-check.git"
+        },
+        {
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-util.git"
+        },
+        {
+            "type": "git",
+            "url": "http://10.1.1.230/ecommerce/ecommerce-services/package-php/ms-test.git"
         }
     ],
     "require": {
-        "php": "^7.2",
-        "laravel/lumen-framework": "^5.8",
         "raiadrogasil/common": "0.*",
         "raiadrogasil/configuration": "0.*",
         "raiadrogasil/connect": "0.*",
-        "raiadrogasil/token": "0.*",
-        "raiadrogasil/swagger": "0.*"
+        "raiadrogasil/token": "0.*"
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.4",
-        "phpunit/phpunit": "^8.0",
-        "mockery/mockery": "^1.0"
+        "raiadrogasil/test": "0.*"
     },
     "autoload": {
         "classmap": [
@@ -70,7 +77,8 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "secure-http": false
     },
     "minimum-stability": "dev",
     "prefer-stable": true
