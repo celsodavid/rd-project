@@ -26,6 +26,9 @@ services:
       - ./.docker/config/nginx/ms-shipping.conf:/etc/nginx/conf.d/ms-shipping.conf
       - ./.docker/config/nginx/ms-store.conf:/etc/nginx/conf.d/ms-store.conf    
       - ./.docker/config/nginx/ms-search.conf:/etc/nginx/conf.d/ms-search.conf    
+      - ./.docker/config/nginx/ms-review.conf:/etc/nginx/conf.d/ms-review.conf    
+      - ./.docker/config/nginx/ms-fourbio.conf:/etc/nginx/conf.d/ms-fourbio.conf  
+
     networks:
       rd_magento2:
         aliases:
@@ -35,6 +38,8 @@ services:
           - ms-shipping.local
           - ms-store.local
           - ms-search.local
+          - ms-review.local
+          - ms-fourbio.local
 
   mysql:
     image: percona
