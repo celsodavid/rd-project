@@ -28,6 +28,7 @@ services:
       - ./.docker/config/nginx/ms-search.conf:/etc/nginx/conf.d/ms-search.conf    
       - ./.docker/config/nginx/ms-review.conf:/etc/nginx/conf.d/ms-review.conf    
       - ./.docker/config/nginx/ms-fourbio.conf:/etc/nginx/conf.d/ms-fourbio.conf  
+      - ./.docker/config/nginx/ms-pbm.conf:/etc/nginx/conf.d/ms-pbm.conf  
 
     networks:
       rd_magento2:
@@ -40,6 +41,7 @@ services:
           - ms-search.local
           - ms-review.local
           - ms-fourbio.local
+          - ms-pbm.local
 
   mysql:
     image: percona
