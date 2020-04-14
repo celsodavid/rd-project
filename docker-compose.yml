@@ -1,4 +1,4 @@
-version: "3.4"
+version: "2.2"
 
 services:
 
@@ -59,19 +59,6 @@ services:
     networks:
       - rd_magento2
 
-  postgres:
-      image: postgres
-      volumes:
-        - ./.docker/postgres_data:/docker-entrypoint-initdb.d/
-      environment:
-          POSTGRES_USER: usr_drogasil
-          POSTGRES_PASSWORD: 123123
-          POSTGRES_DB: microservice
-      ports:
-          - 5432:5432
-      networks:
-        - rd_magento2
-
   rabbitmq:
     image: rabbitmq:3.6-management
     volumes:
@@ -106,6 +93,7 @@ services:
     user: "${USERID}:${GROUPID}"
     networks:
       - rd_magento2
+    cpuset: 0,7
 
   elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.8.6
@@ -117,6 +105,19 @@ services:
       - "./.docker/es_data:/usr/share/elasticsearch/data"
     networks:
       - rd_magento2
+
+  postgres:
+      image: postgres
+      volumes:
+        - ./.docker/postgres_data:/docker-entrypoint-initdb.d/
+      environment:
+          POSTGRES_USER: usr_drogasil
+          POSTGRES_PASSWORD: 123123
+          POSTGRES_DB: microservice
+      ports:
+          - 5432:5432
+      networks:
+        - rd_magento2
 
   mongodb:
     image: mongo
@@ -147,14 +148,8 @@ services:
       - "5000:5000/udp"
       - "9600:9600"
     volumes:
-      - type: bind
-        source: ./.docker/config/logstash/logstash.yml
-        target: /usr/share/logstash/config/logstash.yml
-        read_only: true
-      - type: bind
-        source: ./.docker/config/logstash/pipeline
-        target: /usr/share/logstash/pipeline
-        read_only: true
+      - ./.docker/config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./.docker/config/logstash/pipeline:/usr/share/logstash/pipeline
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
