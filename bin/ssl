@@ -35,7 +35,7 @@ sudo certutil -d sql:$HOME/.pki/nssdb -A -n 'RaiaDrograsil CA' -i RootCA.crt -t 
 
 rm -rf $SSL_PATH/certificate.pem
 touch $SSL_PATH/certificate.pem
-cat $SSL_PATH/drogaraia/drogaraia.local.crt $SSL_PATH/drogaraia/drogaraia.local.csr \
+cat $SSL_PATH/autoridade/RootCA.crt $SSL_PATH/autoridade/RootCA.key $SSL_PATH/drogaraia/drogaraia.local.crt $SSL_PATH/drogaraia/drogaraia.local.csr \
 $SSL_PATH/drogaraia/drogaraia.local.key $SSL_PATH/drogasil/drogasil.local.crt $SSL_PATH/drogasil/drogasil.local.csr \
 $SSL_PATH/drogasil/drogasil.local.key $SSL_PATH/onofre/onofre.local.crt $SSL_PATH/onofre/onofre.local.csr \
-$SSL_PATH/onofre/onofre.local.key $SSL_PATH/autoridade/RootCA.crt $SSL_PATH/autoridade/RootCA.key > $SSL_PATH/certificate.pem
+$SSL_PATH/onofre/onofre.local.key > $SSL_PATH/certificate.pem
