@@ -53,7 +53,14 @@ return [
         'table_prefix' => ''
     ],
     'queue' => [
-        'consumers_wait_for_messages' => 1
+        'consumers_wait_for_messages' => 1,
+        'amqp' => [
+            'host' => 'rabbitmq',
+            'port' => '5672',
+            'user' => 'guest',
+            'password' => 'guest',
+            'virtualhost' => '/'
+        ],
     ],
     'crypt' => [
         'key' => '47205479ba4e7e3e97a39bdebec88c4e'
