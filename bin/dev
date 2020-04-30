@@ -12,7 +12,7 @@ export USERID=${UID}
 export GROUPID=${GID}
 
 if ! test $ARG; then
-   docker-compose stop; docker-compose up -d; docker-compose ps;
+   sudo chmod 777 -R /var/run/docker.sock; docker-compose stop; docker-compose up -d; docker-compose ps;
    exit
 fi
 

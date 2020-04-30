@@ -15,11 +15,20 @@ sudo chmod 777 -R .docker/es_data;
 sudo chmod 777 -R .docker/mongo_data;
 
 echo -e "\nSetando max_map_count para 262144\n";
-sudo echo "vm.max_map_count=262144" >> /etc/sysctl.d/vm_max_count.conf
+echo 'vm.max_map_count=262144' | sudo tee -a /etc/sysctl.d/vm_max_count.conf
 sudo sysctl -p --system
 
 echo -e "\nParando serviços docker\n";
 docker-compose stop;
+
+sudo apt-get install -y bridge-utils
+sudo pkill docker
+sudo iptables -t nat -F
+sudo ifconfig docker0 down
+sudo brctl delbr docker0
+sudo service docker restart
+sudo chmod 777 -R /var/run/docker.sock;
+
 echo -e "\nBuild do docker\n";
 docker-compose build;
 
