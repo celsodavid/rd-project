@@ -108,19 +108,6 @@ services:
     networks:
       - rd_magento2
 
-  postgres:
-      image: postgres
-      volumes:
-        - ./.docker/postgres_data:/docker-entrypoint-initdb.d/
-      environment:
-          POSTGRES_USER: usr_drogasil
-          POSTGRES_PASSWORD: 123123
-          POSTGRES_DB: microservice
-      ports:
-          - 5432:5432
-      networks:
-        - rd_magento2
-
   mongodb:
     image: mongo
     environment:

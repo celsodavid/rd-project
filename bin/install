@@ -15,11 +15,20 @@ sudo chmod 777 -R .docker/es_data;
 sudo chmod 777 -R .docker/mongo_data;
 
 echo -e "\nSetando max_map_count para 262144\n";
-sudo echo "vm.max_map_count=262144" >> /etc/sysctl.d/vm_max_count.conf
+echo 'vm.max_map_count=262144' | sudo tee -a /etc/sysctl.d/vm_max_count.conf
 sudo sysctl -p --system
 
 echo -e "\nParando serviços docker\n";
 docker-compose stop;
+
+sudo apt-get install -y bridge-utils
+sudo pkill docker
+sudo iptables -t nat -F
+sudo ifconfig docker0 down
+sudo brctl delbr docker0
+sudo service docker restart
+sudo chmod 777 -R /var/run/docker.sock;
+
 echo -e "\nBuild do docker\n";
 docker-compose build;
 
@@ -34,7 +43,7 @@ docker-compose exec php bash -c "composer global require hirak/prestissimo";
 echo -e "\nInicializando submódulos\n";
 git submodule init; git submodule update;
 echo -e "\nInstalação dos módulos Composer\n";
-docker-compose exec php bash -c "cd m2 && composer install";
+docker-compose exec php bash -c "cd m2 && composer cc && composer install";
 echo -e "\nPermissão de diretórios Magento 2\n";
 docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type f -exec chmod g+w {} +";
 docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type d -exec chmod g+ws {} +";
