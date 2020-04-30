@@ -57,3 +57,6 @@ ln -s src/m2/vendor/raiadrogasil src/modulos-rd;
 echo -e "\nRestore do banco de dados\n";
 bin/mysql restore
 bin/setup
+
+echo -e "\nAdiciona linha no /etc/hosts\n";
+echo '127.0.0.1 drogasil.local drogaraia.local onofre.locl' | sudo tee -a /etc/hosts
