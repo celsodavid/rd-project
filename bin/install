@@ -59,4 +59,4 @@ bin/mysql restore
 bin/setup
 
 echo -e "\nAdiciona linha no /etc/hosts\n";
-echo '127.0.0.1 drogasil.local drogaraia.local onofre.locl' | sudo tee -a /etc/hosts
+echo '127.0.0.1 drogasil.local drogaraia.local onofre.local' | sudo tee -a /etc/hosts
