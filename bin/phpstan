@@ -16,4 +16,4 @@ if ! test $ARG; then
    exit
 fi
 
-docker-compose exec php m2/vendor/bin/phpstan analyse m2/vendor/raiadrogasil/$1/ --configuration=m2/vendor/raiadrogasil/$1/phpstan.neon
+docker-compose exec php m2/vendor/bin/phpstan analyse m2/vendor/raiadrogasil/$1/ --configuration=m2/phpstan.neon
