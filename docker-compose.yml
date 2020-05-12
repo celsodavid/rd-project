@@ -30,6 +30,9 @@ services:
       - ./.docker/config/nginx/ms-fourbio.conf:/etc/nginx/conf.d/ms-fourbio.conf  
       - ./.docker/config/nginx/ms-pbm.conf:/etc/nginx/conf.d/ms-pbm.conf  
       - ./.docker/config/nginx/ms-ofex.conf:/etc/nginx/conf.d/ms-ofex.conf  
+      - ./.docker/config/nginx/ms-product.conf:/etc/nginx/conf.d/ms-product.conf  
+      - ./.docker/config/nginx/ms-price.conf:/etc/nginx/conf.d/ms-price.conf  
+      - ./.docker/config/nginx/ms-stock.conf:/etc/nginx/conf.d/ms-stock.conf  
 
     networks:
       rd_magento2:
@@ -44,6 +47,9 @@ services:
           - ms-fourbio.local
           - ms-pbm.local
           - ms-ofex.local
+          - ms-product.local
+          - ms-price.local
+          - ms-stock.local
 
   mysql:
     image: percona
