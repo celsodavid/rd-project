@@ -1,0 +1,19 @@
+#!/bin/bash
+USER=whoami | awk '{print $1}'
+
+if [ $USER = "root" ]; then
+    echo "Não utilize sudo";
+    exit
+fi
+
+ARG=$1
+
+export USERID=${UID}
+export GROUPID=${GID}
+
+if ! test $ARG; then
+   echo "Informe o modulo"
+   exit
+fi
+
+docker-compose exec php ./m2/vendor/bin/phpunit -c m2/vendor/raiadrogasil/$1/phpunit.xml m2/vendor/raiadrogasil/$1/
