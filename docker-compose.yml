@@ -68,7 +68,7 @@ services:
       - rd_magento2
 
   rabbitmq:
-    image: rabbitmq:3.6-management
+    image: rabbitmq:3.7-management
     volumes:
       - ./.docker/config/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
     ports:
