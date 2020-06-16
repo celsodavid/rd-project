@@ -33,6 +33,8 @@ services:
       - ./.docker/config/nginx/ms-product.conf:/etc/nginx/conf.d/ms-product.conf  
       - ./.docker/config/nginx/ms-price.conf:/etc/nginx/conf.d/ms-price.conf  
       - ./.docker/config/nginx/ms-stock.conf:/etc/nginx/conf.d/ms-stock.conf  
+      - ./.docker/config/nginx/ms-discount.conf:/etc/nginx/conf.d/ms-discount.conf  
+      - ./.docker/config/nginx/ms-controlled.conf:/etc/nginx/conf.d/ms-controlled.conf  
 
     networks:
       rd_magento2:
@@ -50,7 +52,8 @@ services:
           - ms-product.local
           - ms-price.local
           - ms-stock.local
-
+          - ms-controlled.local
+          - ms-discount.local
   mysql:
     image: percona
     volumes:
