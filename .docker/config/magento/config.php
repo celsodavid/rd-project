@@ -342,11 +342,25 @@ return [
         'RaiaDrogasil_AttributeMigration' => 1,
         'RaiaDrogasil_Backend' => 1,
         'RaiaDrogasil_Banner' => 1,
+        'RaiaDrogasil_CmsPage' => 1,
         'RaiaDrogasil_Collection' => 1,
+        'RaiaDrogasil_Controlled' => 1,
         'RaiaDrogasil_Customer' => 1,
+        'RaiaDrogasil_Discount' => 1,
+        'RaiaDrogasil_FavoriteStore' => 1,
+        'RaiaDrogasil_ImportData' => 1,
+        'RaiaDrogasil_Kit' => 1,
         'RaiaDrogasil_Microservice' => 1,
+        'RaiaDrogasil_Offer' => 1,
+        'RaiaDrogasil_Order' => 1,
         'RaiaDrogasil_Payment' => 1,
+        'RaiaDrogasil_Pbm' => 1,
+        'RaiaDrogasil_Price' => 1,
+        'RaiaDrogasil_Product' => 1,
         'RaiaDrogasil_Routes' => 1,
+        'RaiaDrogasil_S3' => 1,
+        'RaiaDrogasil_Sales' => 1,
+        'RaiaDrogasil_Shipping' => 1,
         'RaiaDrogasil_StoreMenu' => 1,
         'RaiaDrogasil_Vitrine' => 1,
         'RaiaDrogasil_Wishlist' => 1,
@@ -367,19 +381,19 @@ return [
                 'is_default' => '0'
             ],
             'drogaraia' => [
-                'website_id' => '1',
+                'website_id' => '2',
                 'code' => 'drogaraia',
                 'name' => 'Drogaraia',
                 'sort_order' => '0',
-                'default_group_id' => '1',
+                'default_group_id' => '2',
                 'is_default' => '0'
             ],
             'drogasil' => [
-                'website_id' => '2',
+                'website_id' => '1',
                 'code' => 'drogasil',
                 'name' => 'Drogasil',
                 'sort_order' => '0',
-                'default_group_id' => '2',
+                'default_group_id' => '1',
                 'is_default' => '1'
             ],
             'onofre' => [
@@ -401,19 +415,19 @@ return [
                 'code' => 'default'
             ],
             1 => [
-                'group_id' => '1',
-                'website_id' => '1',
+                'group_id' => '2',
+                'website_id' => '2',
                 'name' => 'Drogaraia Store',
                 'root_category_id' => '2',
-                'default_store_id' => '1',
+                'default_store_id' => '2',
                 'code' => 'drogaraia_store'
             ],
             2 => [
-                'group_id' => '2',
-                'website_id' => '2',
+                'group_id' => '1',
+                'website_id' => '1',
                 'name' => 'Drogasil Store',
                 'root_category_id' => '2',
-                'default_store_id' => '2',
+                'default_store_id' => '1',
                 'code' => 'drogasil_store'
             ],
             4 => [
@@ -436,19 +450,19 @@ return [
                 'is_active' => '1'
             ],
             'drogaraia_store_view' => [
-                'store_id' => '1',
+                'store_id' => '2',
                 'code' => 'drogaraia_store_view',
-                'website_id' => '1',
-                'group_id' => '1',
+                'website_id' => '2',
+                'group_id' => '2',
                 'name' => 'Drogaraia Store View',
                 'sort_order' => '0',
                 'is_active' => '1'
             ],
             'drogasil_store_view' => [
-                'store_id' => '2',
+                'store_id' => '1',
                 'code' => 'drogasil_store_view',
-                'website_id' => '2',
-                'group_id' => '2',
+                'website_id' => '1',
+                'group_id' => '1',
                 'name' => 'Drogasil Store View',
                 'sort_order' => '0',
                 'is_active' => '1'
