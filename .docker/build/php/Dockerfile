@@ -19,11 +19,17 @@ ENV LC_ALL C.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 
-## Uncomment this line and run `bin/dev build` to enable xdebug
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-
 RUN docker-php-ext-install opcache
 
 #INSTALL APCU
 RUN pecl install apcu-5.1.11 && docker-php-ext-enable apcu
 #APCU
+
+# Uncomment this line and run `bin/dev build` to enable xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+#
+#ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
+#
+#RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
+#    install-php-extensions imagick
+

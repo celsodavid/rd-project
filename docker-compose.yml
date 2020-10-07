@@ -24,17 +24,17 @@ services:
       - ./.docker/config/nginx/onofre.conf:/etc/nginx/conf.d/onofre.conf
       - ./.docker/config/nginx/drogasil.conf:/etc/nginx/conf.d/drogasil.conf   
       - ./.docker/config/nginx/ms-shipping.conf:/etc/nginx/conf.d/ms-shipping.conf
-      - ./.docker/config/nginx/ms-store.conf:/etc/nginx/conf.d/ms-store.conf    
-      - ./.docker/config/nginx/ms-search.conf:/etc/nginx/conf.d/ms-search.conf    
-      - ./.docker/config/nginx/ms-review.conf:/etc/nginx/conf.d/ms-review.conf    
-      - ./.docker/config/nginx/ms-fourbio.conf:/etc/nginx/conf.d/ms-fourbio.conf  
-      - ./.docker/config/nginx/ms-pbm.conf:/etc/nginx/conf.d/ms-pbm.conf  
-      - ./.docker/config/nginx/ms-ofex.conf:/etc/nginx/conf.d/ms-ofex.conf  
-      - ./.docker/config/nginx/ms-product.conf:/etc/nginx/conf.d/ms-product.conf  
-      - ./.docker/config/nginx/ms-price.conf:/etc/nginx/conf.d/ms-price.conf  
-      - ./.docker/config/nginx/ms-stock.conf:/etc/nginx/conf.d/ms-stock.conf  
-      - ./.docker/config/nginx/ms-discount.conf:/etc/nginx/conf.d/ms-discount.conf  
-      - ./.docker/config/nginx/ms-controlled.conf:/etc/nginx/conf.d/ms-controlled.conf  
+      - ./.docker/config/nginx/ms-store.conf:/etc/nginx/conf.d/ms-store.conf
+      - ./.docker/config/nginx/ms-search.conf:/etc/nginx/conf.d/ms-search.conf
+      - ./.docker/config/nginx/ms-review.conf:/etc/nginx/conf.d/ms-review.conf
+      - ./.docker/config/nginx/ms-fourbio.conf:/etc/nginx/conf.d/ms-fourbio.conf
+      - ./.docker/config/nginx/ms-pbm.conf:/etc/nginx/conf.d/ms-pbm.conf
+      - ./.docker/config/nginx/ms-ofex.conf:/etc/nginx/conf.d/ms-ofex.conf
+      - ./.docker/config/nginx/ms-product.conf:/etc/nginx/conf.d/ms-product.conf
+      - ./.docker/config/nginx/ms-price.conf:/etc/nginx/conf.d/ms-price.conf
+      - ./.docker/config/nginx/ms-stock.conf:/etc/nginx/conf.d/ms-stock.conf
+      - ./.docker/config/nginx/ms-discount.conf:/etc/nginx/conf.d/ms-discount.conf
+      - ./.docker/config/nginx/ms-controlled.conf:/etc/nginx/conf.d/ms-controlled.conf
 
     networks:
       rd_magento2:
@@ -71,9 +71,7 @@ services:
       - rd_magento2
 
   rabbitmq:
-    image: rabbitmq:3.7-management
-    volumes:
-      - ./.docker/config/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+    image: rabbitmq:3.8.8-management
     ports:
       - "15672:15672"
     networks:
