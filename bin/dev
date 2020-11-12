@@ -23,13 +23,13 @@ export USERID=${UID}
 export GROUPID=${GID}
 
 if ! test $ARG; then
-   sudo chmod 777 -R /var/run/docker.sock; docker-compose stop; docker-compose up -d; docker-compose ps;
+   sudo chmod 777 -R /var/run/docker.sock; docker-compose -f $FILE stop; docker-compose -f $FILE up -d; docker-compose -f $FILE ps;
    exit
 fi
 
 
 if [ $ARG = "start" ]; then
-  docker-compose -f $FILE up -d; docker-compose ps;
+  docker-compose -f $FILE up -d; docker-compose -f $FILE ps;
   exit;
 fi
 
@@ -39,12 +39,12 @@ if [ $ARG = "stop" ]; then
 fi
 
 if [ $ARG = "restart" ]; then
-    docker-compose -f $FILE stop; docker-compose -f $FILE up -d; docker-compose ps;
+    docker-compose -f $FILE stop; docker-compose -f $FILE up -d; docker-compose -f $FILE ps;
     exit;
 fi
 
 if [ $ARG = "status" ]; then
-    docker-compose ps;
+    docker-compose -f $FILE ps;
     exit;
 fi
 
