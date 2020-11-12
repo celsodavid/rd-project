@@ -1,16 +1,12 @@
 #!/bin/bash
 ARG=$1
 ARG2=$2
-
+FILE="docker-compose-magento.yml";
 if test $ARG2; then
-    if [ $ARG2 = "magento" ]; then
-      FILE="docker-compose-magento.yml";
-    elif [ $ARG2 = "ms" ]; then
+    if [ $ARG2 = "ms" ]; then
       FILE="docker-compose-ms.yml";
     fi
-  else
-    FILE="docker-compose-general.yml";
-  fi
+fi
 
 USER=whoami | awk '{print $1}'
 
