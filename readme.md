@@ -23,20 +23,11 @@ sudo bin/install
     
 Ao final da execução, reinicie o seu navegador.
 
-### URLs
-
-É necessário adicionar no seu arquivo hosts e no proxy as urls para cada site. São elas:
-```
-drogasil.local
-drogaraia.local
-onofre.local
-```
-
 ### Admin
 O endereço para o admin é `/admin`
 ```
 Usuário: admin
-Senha: admin123 
+Senha: admin1234
 ```
    
 ### Cliente Padrão
@@ -67,19 +58,19 @@ fqf161869ml8n0wuke855bm14ov8rvdv
 
     ```
     # iniciar container
-    bin/dev start  
+    bin/dev start magento
 
     # stop containers
-    bin/dev stop
+    bin/dev stop magento
         
     # restart containers
-    bin/dev restart
+    bin/dev restart magento
   
     # ver status containers
     bin/dev status
   
     # atualizar imagens dos containers
-    bin/dev build  
+    bin/dev build magento
     ```
 - PHP
 

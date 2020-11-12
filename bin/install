@@ -43,11 +43,13 @@ docker-compose exec php bash -c "composer global require hirak/prestissimo";
 echo -e "\nInicializando submódulos\n";
 git submodule init; git submodule update;
 echo -e "\nInstalação dos módulos Composer\n";
-docker-compose exec php bash -c "cd m2 && composer cc && composer install";
+cd src/m2; git checkout develop; cd ../../;
+docker-compose exec php bash -c "cd m2 && 'composer cc && composer install'";
 echo -e "\nPermissão de diretórios Magento 2\n";
 docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type f -exec chmod g+w {} +";
 docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type d -exec chmod g+ws {} +";
 docker-compose exec php bash -c "chmod u+x m2/bin/magento";
+cd src/m2; git checkout app/bootstrap.php; cd ../../;
 
 docker-compose exec php bash -c "composer global require laravel/lumen-installer";
 
@@ -55,6 +57,8 @@ echo -e "\nCriando diretório com módulos RD da vendor\n";
 ln -s src/m2/vendor/raiadrogasil src/modulos-rd;
 
 echo -e "\nRestore do banco de dados\n";
+wget -O dump_rd/dump.tar.xz https://public.dm.files.1drv.com/y4m4DcRQWZ3qyHFg3DDmpAi_56DDW6jehJyuWSko8TwVcVVpPdvcjFmcSPXFNQ29psZ9yOzgKi0PaEBxbKXOgBCwNTS69aCuvWtcpZr76WJU0IyCXt5-QIr1WyG259Ywyo7f0QIYXmLRPNwt_8rUr6IZ1BGSMF9hUPe3rlm3z3zv5F-SkLn6hn0P5VrQpZ06cC7EVOCmiwiwRf6NIdbf646gE3D2nk3nOB06G_hlss-Syg\?access_token\=EwAYA61DBAAUzl/nWKUlBg14ZGcybuC4/OHFdfEAAVdwVqepxOgy0P0VvcI0T7h0t3YJ%2btJL%2borFDh7nWKr5g3H2cw4Itc0Lw3yNhdrujVmwa/NEBvkgSr5kBPmEUuWRwkx9qy02D4eCAHN8p2S5QClc3qDjlclh2EVaMK6v/HoToBH9dgc0%2bP0QYRQHldvSL4LUBaReW/q8d9p26V9YlPaKJsDlGhueGVEWKtUFdc3U0kISdrrvTOZG%2b2OKGD2JmpBcQVYZ6zeN5X7YbFFEcu2sGUu3mlbR/MVcLtNnZVb7ZOv2SuL0temo%2bTVOLE4EnBTWITPPSoFh047NDu02vPbpf/VsN5IZ9CyuAYCZggkU0ctiLakiaaT67bhhNmIDZgAACGnDA6hluzQm6AHaBmAeJUrbahrnR3baLs5hfowtO/I/qi9LIsCsV9rCPDSU7CNYfny2g3VJgeBzgo7GubyXDu9MHB/ow8Aj9xBPvnOAhYJGye%2b/H1fk9URDJP9bXo5ZcBAKlL32houQPdezt%2bAfGZ6n62r8ithHZvKrMiJc0BvZ9nYAd%2biedMShYeWVvv8hx8R0zG39Ma2vAO26ql250Jkh2wCK9ddXAbEZMp8hoXWYCi7vGKpXuvMPGcrUiYiSPSo/VDPlt8uxBegC0GGY4boXO9ZGNjMmSEnKIIbGSOyLFuusDC%2bfxpi40y5Bb2mUOcACiBSh05OGma5SbXmtEWsuJv3ObaxUTohULhO6t9s8pFPWMTeJ7gscLhAQfENf1ERi%2bECbfqkk2Imqg2bow9CdjzjMVwT4izErH2KWNSnDaHhtLN0%2bg1%2bfTv2Ha9i1wp1YEi1BH3UIbH//b9UPS4qvjhC3bSGbtzOmKQS63V8A%2b6oflbSmkUte8Qdab8vShEqRSZYaEDMHv2iMSQbv/NBJLNVSrIv4g8SRlyWmmmXkJMmCc1k7sxZ%2bx9psTkdWT/SUPf9iy545EOCsXgVYcQ0tbORk35Q/GVIFIhZC0PoVZs%2bpPJqA0lZq6K6M24gvBl6EpB2nIMboQ4qnpRXHJnQqAQwC
+cd dump_rd; tar -xf dump.tar.xz; mv Dump20201112.sql magento2.sql; cd ../;
 bin/mysql restore
 bin/setup
 

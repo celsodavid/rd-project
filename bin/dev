@@ -1,5 +1,16 @@
 #!/bin/bash
 ARG=$1
+ARG2=$2
+
+if test $ARG2; then
+    if [ $ARG2 = "magento" ]; then
+      FILE="docker-compose-magento.yml";
+    elif [ $ARG2 = "ms" ]; then
+      FILE="docker-compose-ms.yml";
+    fi
+  else
+    FILE="docker-compose-general.yml";
+  fi
 
 USER=whoami | awk '{print $1}'
 
@@ -18,17 +29,17 @@ fi
 
 
 if [ $ARG = "start" ]; then
-    docker-compose up -d; docker-compose ps;
-    exit;
+  docker-compose -f $FILE up -d; docker-compose ps;
+  exit;
 fi
 
 if [ $ARG = "stop" ]; then
-    docker-compose stop;
+    docker-compose -f $FILE stop;
     exit;
 fi
 
 if [ $ARG = "restart" ]; then
-    docker-compose stop; docker-compose up -d; docker-compose ps;
+    docker-compose -f $FILE stop; docker-compose -f $FILE up -d; docker-compose ps;
     exit;
 fi
 
@@ -38,7 +49,7 @@ if [ $ARG = "status" ]; then
 fi
 
 if [ $ARG = "build" ]; then
-    bin/dev stop; docker-compose build;
-    bin/dev start;
+    bin/dev -f $FILE stop; docker-compose -f $FILE build;
+    bin/dev start $ARG2;
     exit;
 fi
