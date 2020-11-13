@@ -61,6 +61,7 @@ wget -O dump_rd/dump.tar.xz https://public.dm.files.1drv.com/y4m4DcRQWZ3qyHFg3DD
 cd dump_rd; tar -xf dump.tar.xz; mv Dump20201112.sql magento2.sql; cd ../;
 bin/mysql restore
 bin/setup
+bin/mysql restore
 
 echo -e "\nAdiciona linha no /etc/hosts\n";
 echo '127.0.0.1 drogasil.local drogaraia.local onofre.local' | sudo tee -a /etc/hosts
