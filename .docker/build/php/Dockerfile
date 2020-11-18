@@ -11,7 +11,7 @@ RUN apk --update add --virtual build-dependencies build-base openssl-dev autocon
 RUN docker-php-ext-install gd bcmath intl xsl pdo pdo_mysql soap zip bz2 calendar exif sockets
 
 # COMPOSER
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --version=1.10.17 --filename=composer && \
     mkdir /usr/local/.composer && chmod 777 -R /usr/local/.composer
 
 # Set default locale for the environment
@@ -27,6 +27,8 @@ RUN pecl install apcu-5.1.11 && docker-php-ext-enable apcu
 
 # Uncomment this line and run `bin/dev build` to enable xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+RUN composer self-update
 #
 #ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
 #

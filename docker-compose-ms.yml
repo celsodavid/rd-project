@@ -1,0 +1,174 @@
+version: "2.2"
+
+services:
+
+  nginx:
+    build:
+      context: ./.docker/build/nginx
+      network: host
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src:/var/www/html
+      - ./.docker/config/nginx/ssl/drogaraia/drogaraia.local.crt:/etc/nginx/drogaraia.local.crt
+      - ./.docker/config/nginx/ssl/drogaraia/drogaraia.local.key:/etc/nginx/drogaraia.local.key
+      - ./.docker/config/nginx/ssl/drogasil/drogasil.local.crt:/etc/nginx/drogasil.local.crt
+      - ./.docker/config/nginx/ssl/drogasil/drogasil.local.key:/etc/nginx/drogasil.local.key
+      - ./.docker/config/nginx/ssl/onofre/onofre.local.crt:/etc/nginx/onofre.local.crt
+      - ./.docker/config/nginx/ssl/onofre/onofre.local.key:/etc/nginx/onofre.local.key
+      - ./.docker/config/nginx/magento.conf:/etc/nginx/conf.d/magento.conf
+      - ./.docker/config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./.docker/config/nginx/drogaraia.conf:/etc/nginx/conf.d/drogaraia.conf
+      - ./.docker/config/nginx/onofre.conf:/etc/nginx/conf.d/onofre.conf
+      - ./.docker/config/nginx/drogasil.conf:/etc/nginx/conf.d/drogasil.conf   
+      - ./.docker/config/nginx/ms-shipping.conf:/etc/nginx/conf.d/ms-shipping.conf
+      - ./.docker/config/nginx/ms-store.conf:/etc/nginx/conf.d/ms-store.conf
+      - ./.docker/config/nginx/ms-search.conf:/etc/nginx/conf.d/ms-search.conf
+      - ./.docker/config/nginx/ms-review.conf:/etc/nginx/conf.d/ms-review.conf
+      - ./.docker/config/nginx/ms-fourbio.conf:/etc/nginx/conf.d/ms-fourbio.conf
+      - ./.docker/config/nginx/ms-pbm.conf:/etc/nginx/conf.d/ms-pbm.conf
+      - ./.docker/config/nginx/ms-ofex.conf:/etc/nginx/conf.d/ms-ofex.conf
+      - ./.docker/config/nginx/ms-product.conf:/etc/nginx/conf.d/ms-product.conf
+      - ./.docker/config/nginx/ms-price.conf:/etc/nginx/conf.d/ms-price.conf
+      - ./.docker/config/nginx/ms-stock.conf:/etc/nginx/conf.d/ms-stock.conf
+      - ./.docker/config/nginx/ms-discount.conf:/etc/nginx/conf.d/ms-discount.conf
+      - ./.docker/config/nginx/ms-controlled.conf:/etc/nginx/conf.d/ms-controlled.conf
+
+    networks:
+      rd_magento2:
+        aliases:
+          - drogasil.local
+          - drogaraia.local
+          - onofre.local
+          - ms-shipping.local
+          - ms-store.local
+          - ms-search.local
+          - ms-review.local
+          - ms-fourbio.local
+          - ms-pbm.local
+          - ms-ofex.local
+          - ms-product.local
+          - ms-price.local
+          - ms-stock.local
+          - ms-controlled.local
+          - ms-discount.local
+  mysql:
+    image: percona
+    volumes:
+      - ./.docker/percona_data:/var/lib/mysql
+      - ./dump_rd:/dump
+      - ./.docker/config/mysql/magento2.cnf:/etc/mysql/conf.d/magento2.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: 123123
+      MYSQL_USER: usr_drogasil
+      MYSQL_PASSWORD: 123123
+      MYSQL_DATABASE: magento2
+    ports:
+      - "3306:3306"
+    networks:
+      - rd_magento2
+
+  rabbitmq:
+    image: rabbitmq:3.8.8-management
+    ports:
+      - "15672:15672"
+    networks:
+      - rd_magento2
+
+  redis:
+    image: redis
+    ports:
+      - "6379"
+    networks:
+      - rd_magento2
+        
+  php:
+    build: 
+      context: ./.docker/build/php
+      network: host
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+    environment:
+      COMPOSER_HOME: /usr/local/.composer
+    volumes:
+      - ./src:/var/www/html
+      - ./.docker/config/php/php.ini:/usr/local/etc/php/conf.d/raiadrogasil.ini
+      - ./.docker/config/php/www.conf:/usr/local/etc/php-fpm.d/raiadrogasil.conf
+      - ./.docker/config/php/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
+      - ./.docker/config/php/auth.json:/usr/local/.composer/auth.json
+      - ./.docker/config/nginx/ssl/certificate.pem:/usr/local/etc/php/conf.d/certificate.pem
+    user: "${USERID}:${GROUPID}"
+    networks:
+      - rd_magento2
+    cpuset: 0,7
+
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.6
+    ports: 
+      - "9200:9200"
+    environment:
+      ES_JAVA_OPTS: '-Xms1g -Xmx1g'
+    volumes:
+      - "./.docker/es_data:/usr/share/elasticsearch/data"
+    networks:
+      - rd_magento2
+
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./.docker/mongo_data:/data/db
+    ports:
+        - 27017:27017
+    networks:
+      - rd_magento2
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.8.6
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_HOSTS: http://elastic:9200
+      ELASTICSEARCH_URL: http://elastic:9200/
+    networks:
+      - rd_magento2
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.8.6
+    ports:
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
+    volumes:
+      - ./.docker/config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./.docker/config/logstash/pipeline:/usr/share/logstash/pipeline
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - rd_magento2
+    depends_on:
+      - elastic
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:6.8.6
+    command: --strict.perms=false
+    user: root
+    environment:
+      - setup.kibana.host=kibana:5601
+      - output.elasticsearch.hosts=["elastic:9200"]
+    ports:
+      - 9001:9001
+    volumes:
+      - ./.docker/config/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - rd_magento2
+
+networks:
+  rd_magento2:
+    driver: bridge

@@ -18,4 +18,4 @@ if ! test $ARG1; then
   exit
 fi
 
-docker-compose exec php bash -c "composer $ARG1 $ARG2"
+sudo docker-compose exec php bash -c "composer $ARG1 $ARG2"
