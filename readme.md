@@ -18,7 +18,7 @@
 Para construir todo o ambiente é necessário somente um passo:
 
 ```sh   
-sudo bin/install
+bin/install
 ```
     
 Ao final da execução, reinicie o seu navegador.
