@@ -50,9 +50,9 @@ docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/stati
 docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type d -exec chmod g+ws {} +";
 docker-compose exec php bash -c "chmod u+x m2/bin/magento";
 cd src/m2; git checkout app/bootstrap.php; cd ../../;
+docker-compose exec php bash -c "cd m2; mv .env.local .env";
 
 docker-compose exec php bash -c "composer global require laravel/lumen-installer";
-
 echo -e "\nCriando diretório com módulos RD da vendor\n";
 ln -s src/m2/vendor/raiadrogasil src/modulos-rd;
 
