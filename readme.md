@@ -23,6 +23,8 @@ bin/install
 
 Durante a instalação será solicitado o usuário e senha do git. Informe e confirme para gravar os dados.
 
+Em um segundo momento ele pedirá para confirmar a alteração de stores. Confirme.
+
 Ao final da execução, reinicie o seu navegador.
 
 ### Admin
