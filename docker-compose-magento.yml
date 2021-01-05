@@ -78,7 +78,6 @@ services:
     user: "${USERID}:${GROUPID}"
     networks:
       - rd_magento2
-    cpuset: 0,7
 
   elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.8.6

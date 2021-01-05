@@ -25,8 +25,8 @@ RUN docker-php-ext-install opcache
 RUN pecl install apcu-5.1.11 && docker-php-ext-enable apcu
 #APCU
 
-# Uncomment this line and run `bin/dev build` to enable xdebug
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+#Uncomment this line and run `bin/dev build` to enable xdebug
+RUN pecl install -f xdebug-2.9.8 && docker-php-ext-enable xdebug
 
 RUN composer self-update
 #
