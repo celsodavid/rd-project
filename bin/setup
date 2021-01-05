@@ -14,6 +14,7 @@ cp ./.docker/config/magento/env.php src/m2/app/etc/
 cp ./.docker/config/magento/config.php src/m2/app/etc/
 
 docker-compose exec php bash -c "m2/bin/magento deploy:mode:set developer; m2/bin/magento config:set dev/static/sign 0; m2/bin/magento c:c;";
+docker-compose exec php bash -c "m2/bin/magento app:config:import;";
 docker-compose exec php bash -c "m2/bin/magento setup:upgrade;";
 docker-compose exec php bash -c "m2/bin/magento setup:di:compile;";
 docker-compose exec php bash -c "m2/bin/magento setup:static:dep -f pt_BR en_US;";

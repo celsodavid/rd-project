@@ -60,7 +60,6 @@ echo -e "\nRestore do banco de dados\n";
 cd dump_rd; tar -xf magento2.tar.xz; cd ../;
 bin/mysql restore
 bin/setup
-bin/mysql restore
 
 echo -e "\nAdiciona linha no /etc/hosts\n";
 echo '127.0.0.1 drogasil.local drogaraia.local onofre.local' | sudo tee -a /etc/hosts
