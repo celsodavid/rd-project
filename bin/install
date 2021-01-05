@@ -44,7 +44,7 @@ echo -e "\nInicializando submódulos\n";
 git submodule init; git submodule update;
 echo -e "\nInstalação dos módulos Composer\n";
 cd src/m2; git checkout develop; cd ../../;
-docker-compose exec php bash -c "cd m2 && 'composer cc && composer install'";
+docker-compose exec php bash -c "cd m2 && composer cc && composer install";
 echo -e "\nPermissão de diretórios Magento 2\n";
 docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type f -exec chmod g+w {} +";
 docker-compose exec php bash -c "find m2/var m2/generated m2/vendor m2/pub/static m2/pub/media m2/app/etc -type d -exec chmod g+ws {} +";
