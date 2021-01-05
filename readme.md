@@ -20,7 +20,9 @@ Para construir todo o ambiente é necessário somente um passo:
 ```sh   
 bin/install
 ```
-    
+
+Durante a instalação será solicitado o usuário e senha do git. Informe e confirme para gravar os dados.
+
 Ao final da execução, reinicie o seu navegador.
 
 ### Admin
